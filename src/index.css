@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap");
+
+.great-vibes {
+  font-family: "Great Vibes", cursive;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
