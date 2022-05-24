@@ -21,6 +21,7 @@ const Header = () => {
         <li><CustomLink to='/shop'>Shop</CustomLink></li>
         <li><CustomLink to='/shop'>Contact Us</CustomLink></li>
         <li><CustomLink to='/shop'>About</CustomLink></li>
+        <li><CustomLink to='/reviews/all'>Reviews</CustomLink></li>
         {
             user
                 ? <li><span onClick={handleSignOut}>Sign Out</span></li>

@@ -11,9 +11,9 @@ const Products = () => {
     }, [])
     return (
         <div>
-            <div className='grid grid-cols-2 gap-4 mx-auto w-1/2'>
+            <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center mx-6 md:mx-12'>
                 {
-                    products.slice(0, 4).map(product => <Product product={product}></Product>)
+                    products.slice(0, 12).map(product => <Product product={product}></Product>)
                 }
             </div>
         </div>
