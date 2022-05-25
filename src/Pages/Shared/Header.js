@@ -19,8 +19,8 @@ const Header = () => {
         </li>
         <li><CustomLink to='/home'>Home</CustomLink></li>
         <li><CustomLink to='/shop'>Shop</CustomLink></li>
-        <li><CustomLink to='/shop'>Contact Us</CustomLink></li>
-        <li><CustomLink to='/shop'>About</CustomLink></li>
+        <li><CustomLink to='/contact'>Contact Us</CustomLink></li>
+        <li><CustomLink to='/'>About</CustomLink></li>
         <li><CustomLink to='/reviews/all'>Reviews</CustomLink></li>
         {
             user

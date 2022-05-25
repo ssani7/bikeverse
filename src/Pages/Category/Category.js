@@ -7,7 +7,7 @@ const Category = () => {
         { name: 'Outdoor Hunks', category: "outdoor", img: 'https://i.ibb.co/w6bYz0W/outdoor1.jpg' },
         { name: 'Kids Adventure', category: "kids", img: 'https://i.ibb.co/PcmH0f7/kids.jpg' },
         { name: 'For Flying Women', category: "women", img: 'https://i.ibb.co/72rwRs8/female.jpg' },
-        { name: 'Stylish Modification', category: "style", img: 'https://i.ibb.co/bdHZnVh/classic.jpg' },
+        { name: 'Made For Sports', category: "sports", img: 'https://i.ibb.co/FK7dShJ/sports.jpg' },
     ]
     return (
         <div className='my-32 py-16'>
