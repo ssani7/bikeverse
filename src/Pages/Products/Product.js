@@ -4,7 +4,7 @@ const Product = ({ product }) => {
     const { name, minimumSell, image, info, price, material, origin } = product;
     return (
         <div class="card group static lg:card-side bg-base-100 shadow-xl transition-all hover:scale-110 hover:bg-secondary">
-            <img src={image} className='lg:w-1/2 h-fit my-auto lg:ml-5 lg:group-hover:rounded-3xl' alt="Album" />
+            <img src={image} className='lg:w-1/2 h-fit my-auto lg:ml-5 rounded-3xl' alt="Album" />
             <div class="card-body">
                 <h2 class="card-title">{name}</h2>
                 <h1><b>Material:</b> {material}</h1>

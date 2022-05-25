@@ -1,5 +1,3 @@
-import { faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect } from 'react';
 import { useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -39,17 +37,8 @@ const SocialLogin = () => {
                     </span>
                     Processing...
                 </>
-                : <> <img src={facebook} className='h-6 mr-3' alt="" /> Continue With google </>}</button>
+                : <> <img src={facebook} className='h-6 mr-3' alt="" /> Continue With Facebook </>}</button>
             {fError && <p className='text-red-500 mt-1 text-center'><small>{fError.message}</small></p>}
-
-            <button onClick={() => signInWithGoogle()} className="btn btn-outline normal-case w-full">{loading
-                ? <>
-                    <span className="animate-spin border-4 rounded-full h-5 w-5 mr-3 border-gray-400 border-t-gray-50" viewBox="0 0 24 24">
-                    </span>
-                    Processing...
-                </>
-                : <> <img src={google} className='h-6 mr-3' alt="" /> Continue With google </>}</button>
-            {error && <p className='text-red-500 mt-1 text-center'><small>{error.message}</small></p>}
         </div>
     );
 };

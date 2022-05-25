@@ -10,7 +10,6 @@ library.add(faStar);
 
 const Reviews = () => {
     const { length } = useParams();
-    const navigate = useNavigate();
 
     let { isLoading, data } = useQuery('reviews', () => fetch(`https://bikeverse-assignment-12.herokuapp.com/reviews`)
         .then(res => res.json()))

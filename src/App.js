@@ -6,6 +6,8 @@ import Header from './Pages/Shared/Header';
 import Login from './Pages/Login/Login';
 import Register from './Pages/Login/Register';
 import Reviews from './Pages/Reviews/Reviews';
+import AllProducts from './Pages/Products/AllProducts';
+import CategoryProducts from './Pages/Products/CategoryProducts';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/home' element={<Home />}></Route>
+        <Route path='/shop/:category' element={<CategoryProducts />}></Route>
+        <Route path='/shop' element={<AllProducts />}></Route>
         <Route path='/reviews/:length' element={<Reviews />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='/login' element={<Login />}></Route>
