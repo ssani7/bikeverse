@@ -5,8 +5,7 @@ import Home from './Pages/Home/Home';
 import Header from './Pages/Shared/Header';
 import Login from './Pages/Login/Login';
 import Register from './Pages/Login/Register';
-import Products from './Pages/Products/Products';
-import Reviews from './Pages/Home/Reviews';
+import Reviews from './Pages/Reviews/Reviews';
 
 function App() {
   return (

@@ -28,20 +28,20 @@ const Register = () => {
 
     }
     return (
-        <div className='w-100 flex justify-center items-center'>
-            <div className="card mx-6 w-96 bg-base-100 shadow-xl mt-28">
-                <div className="card-body">
+        <div className='max-w-full md:max-w-2xl mx-auto'>
+            <div className="card mx-6 md:mx-16 bg-base-100 shadow-xl mt-28">
+                <div className="card-body text-center">
                     <h2 className="text-center my-3 text-2xl font-bold">Sign Up</h2>
 
                     <form onSubmit={handleSubmit(handleSignUp)}>
-                        <div className="form-control w-full max-w-xs">
+                        <div className="form-control w-full mx-auto">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
                             <input
                                 type="email"
                                 placeholder="Type here"
-                                className="input input-bordered w-full max-w-xs"
+                                className="input input-bordered w-full py-7"
                                 {...register("email", {
                                     required: 'Email is required',
                                     pattern: {
@@ -54,11 +54,11 @@ const Register = () => {
 
                             </label>
                         </div>
-                        <div className="form-control w-full max-w-xs">
+                        <div className="form-control w-full mx-auto">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" placeholder="Type here" className="input input-bordered w-full max-w-xs"
+                            <input type="password" placeholder="Type here" className="input input-bordered w-full py-7"
                                 {...register("password", {
                                     required: 'Password is required',
                                     minLength: {
@@ -76,11 +76,11 @@ const Register = () => {
                                 {errors?.password && <span className="label-text-alt text-red-600 mx-auto">{errors.password.message}</span>}
                             </label>
                         </div>
-                        <div className="form-control w-full max-w-xs">
+                        <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text">Confirm Password</span>
                             </label>
-                            <input type="password" placeholder="Type here" className="input input-bordered w-full max-w-xs"
+                            <input type="password" placeholder="Type here" className="input input-bordered w-full py-7"
                                 {...register("confirmPass", {
                                     required: 'Password confirmation is required',
                                     validate: {

@@ -3,14 +3,16 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Loading from '../Shared/Loading';
 
 library.add(faStar);
 
 const Reviews = () => {
     const { length } = useParams();
-    let { isLoading, data } = useQuery('reviews', () => fetch(`http://localhost:5000/reviews`)
+    const navigate = useNavigate();
+
+    let { isLoading, data } = useQuery('reviews', () => fetch(`https://bikeverse-assignment-12.herokuapp.com/reviews`)
         .then(res => res.json()))
 
     if (isLoading) {
@@ -20,11 +22,11 @@ const Reviews = () => {
     let reviews = (length === 'all') ? data : data.slice(0, 6);
 
     return (
-        <div className='my-32'>
+        <div className='flex flex-col justify-center items-center my-16'>
             <h2 className='text-center text-3xl my-6 font-semibold'>Customer Reviews</h2>
-            <div className='grid grid-cols-1 md:grid-cols-3 mx-6 md:mx-12 my-24 justify-items-center gap-6'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-6 md:mx-12 my-24 justify-items-center gap-10'>
                 {
-                    reviews.map(r => <div class="card bg-base-100 shadow-xl">
+                    reviews.map(r => <div class="card static transition-all bg-base-100 shadow-xl hover:bg-secondary hover:scale-110">
                         <div class="card-body">
                             <div class="card-title">
                                 <div class="avatar m-4">

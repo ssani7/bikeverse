@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from './SocialLogin';
 
 const Login = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     const [
         signInWithEmailAndPassword,
@@ -15,6 +18,12 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
+    useEffect(() => {
+        if (user) {
+            navigate(from, { replace: true })
+        }
+    }, [user, navigate, from])
+
     const handleSignUp = async (data) => {
         const email = data.email;
         const password = data.password;
@@ -22,20 +31,19 @@ const Login = () => {
     }
 
     return (
-        <div className='w-100 flex justify-center items-center'>
-            <div className="card mx-6 w-96 bg-base-100 shadow-xl mt-28">
-                <div className="card-body">
+        <div className='max-w-full md:max-w-2xl mx-auto'>
+            <div className="card mx-6 md:mx-16 bg-base-100 shadow-xl mt-28">
+                <div className="card-body text-center">
                     <h2 className="text-center my-3 text-2xl font-bold">Sign In</h2>
-
                     <form onSubmit={handleSubmit(handleSignUp)}>
-                        <div className="form-control w-full max-w-xs">
+                        <div className="form-control w-full mx-auto">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
                             <input
                                 type="email"
-                                placeholder="Type here"
-                                className="input input-bordered w-full max-w-xs"
+                                placeholder="Your Email Address"
+                                className="input input-bordered w-full py-7"
                                 {...register("email", {
                                     required: 'Email is required',
                                     pattern: {
@@ -48,11 +56,11 @@ const Login = () => {
 
                             </label>
                         </div>
-                        <div className="form-control w-full max-w-xs">
+                        <div className="form-control w-full mx-auto">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" placeholder="Type here" className="input input-bordered w-full max-w-xs"
+                            <input type="password" placeholder="Your Password" className="input input-bordered w-full py-7"
                                 {...register("password", {
                                     required: 'Password is required'
                                 })} />
@@ -63,7 +71,7 @@ const Login = () => {
                         {
                             loading
                                 ? <>
-                                    <button className='w-full max-w-xs mb-5 btn btn-outline normal-case'><div className='animate-spin border-4 rounded-full h-5 w-5 mr-3 border-t-gray-50'></div>
+                                    <button className='w-full mb-5 btn btn-outline normal-case'><div className='animate-spin border-4 rounded-full h-5 w-5 mr-3 border-t-gray-50'></div>
                                         Logging In
                                     </button>
                                 </>
