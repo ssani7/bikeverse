@@ -19,13 +19,13 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
-
+    const [token] = useToken(user)
 
     useEffect(() => {
-        if (user) {
+        if (token) {
             navigate(from, { replace: true })
         }
-    }, [user, navigate, from])
+    }, [token, navigate, from])
 
     const handleSignUp = async (data) => {
         const email = data.email;

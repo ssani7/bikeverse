@@ -6,7 +6,7 @@ import Loading from '../../Shared/Loading';
 
 const UserOrders = () => {
     const [user, loading] = useAuthState(auth);
-    const { data: orders, isLoading } = useQuery('userOrders', () => fetch(`http://localhost:5000/userOrders/${user?.email}`).then(res => res.json()))
+    const { data: orders, isLoading } = useQuery('userOrders', () => fetch(`https://bikeverse-assignment-12.herokuapp.com/userOrders/${user?.email}`).then(res => res.json()))
 
     if (loading || isLoading) {
         return <Loading></Loading>

@@ -6,7 +6,7 @@ const UserRow = ({ user, setRefetch }) => {
     const { photo, email, name, role } = user;
 
     const makeAdmin = email => {
-        fetch(`http://localhost:5000/makeAdmin/${email}`, {
+        fetch(`https://bikeverse-assignment-12.herokuapp.com/makeAdmin/${email}`, {
             method: 'PUT',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`

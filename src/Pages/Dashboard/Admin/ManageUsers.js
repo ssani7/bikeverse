@@ -7,7 +7,7 @@ const ManageUsers = () => {
     const [refetch, setRefetch] = useState(false);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users`, {
+        fetch(`https://bikeverse-assignment-12.herokuapp.com/users`, {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`

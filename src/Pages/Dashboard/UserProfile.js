@@ -21,7 +21,7 @@ const UserProfile = () => {
         <div className='h-full md:w-full flex justify-center items-center'>
             <div className='bg-gray-700 mx-6 md:w-2/3 text-center md:text-left rounded-2xl flex flex-col-reverse items-center md:flex-row relative'>
                 <div className='w-full p-10 text-base-content'>
-                    <h1 className="text-5xl font-bold">{displayName}</h1>
+                    <h1 className="text-5xl font-bold">{displayName ? displayName : 'No Name Found'}</h1>
                     <p className="pt-4"><FontAwesomeIcon className='mr-2' icon={faLocationDot} /> {address ? address : "No Address Found"}</p>
                     <p className="pt-4"><FontAwesomeIcon className='mr-2' icon={faBriefcase} /> {job ? job : "No Address Found"}</p>
 
@@ -33,7 +33,7 @@ const UserProfile = () => {
                     </div>
                     <label htmlFor="profile-modal" onClick={() => setOpenModal(true)} className="btn btn-primary modal-button">Update Profile</label>
                 </div>
-                <img src={photoURL} className="z-20 h-full w-2/3 right-0 shadow-2xl rounded-full mt-3 md:m-0 md:w-1/3 md:-right-10 md:rounded-lg md:h-fit md:scale-110  md:absolute lg:w-fit lg:h-full" alt='' />
+                <img src={photoURL ? photoURL : 'https://i.ibb.co/PcmH0f7/kids.jpg'} className="z-20 h-full w-2/3 right-0 shadow-2xl rounded-full mt-3 md:m-0 md:w-1/3 md:-right-10 md:rounded-lg md:h-fit md:scale-110  md:absolute lg:w-fit lg:h-full" alt='' />
             </div>
             {
                 openModal && <ProfileModal></ProfileModal>
