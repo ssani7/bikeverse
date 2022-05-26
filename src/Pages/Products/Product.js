@@ -5,7 +5,7 @@ const Product = ({ product }) => {
     const navigate = useNavigate();
     const { _id, name, minimumSell, image, info, price, material, origin, stock } = product;
     return (
-        <div className="card group static lg:card-side bg-base-100 shadow-xl transition-all hover:scale-110 hover:bg-secondary">
+        <div className="card group static lg:card-side bg-base-100 shadow-xl transition-all lg:hover:scale-110 lg:hover:bg-secondary">
             <img src={image} className='lg:w-1/2 h-fit my-auto lg:ml-5 rounded' alt="Album" />
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
@@ -18,7 +18,7 @@ const Product = ({ product }) => {
                 <div className="card-actions justify-end mt-4">
                     <button
                         onClick={() => navigate(`/part/${_id}`)}
-                        className="btn btn-primary border-0 group-hover:bg-neutral group-hover:text-white hover:scale-110">Buy Now</button>
+                        className="btn btn-primary border-0 lg:group-hover:bg-neutral lg:group-hover:text-white lg:hover:scale-110">Buy Now</button>
                 </div>
             </div>
         </div>

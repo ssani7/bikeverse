@@ -34,7 +34,7 @@ const Login = () => {
     }
 
     return (
-        <div className='max-w-full md:max-w-2xl mx-auto pt-28'>
+        <div className='max-w-full md:max-w-2xl mx-auto pt-28 h-screen'>
             <div className="card mx-6 md:mx-16 bg-gray-800 shadow-xl">
                 <div className="card-body text-center">
                     <h2 className="text-center my-3 text-2xl font-bold">Log In</h2>

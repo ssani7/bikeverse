@@ -17,12 +17,12 @@ const Summary = () => {
             <h2 className='text-3xl font-semibold text-center'>Maintaining Quality Worldwide</h2>
             <div className='grid md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-5 mx-10 my-16 justify-center items-center cursor-pointer h-full'>
                 {
-                    summaries.map((summary, i) => <div key={i} className="card h-fit bg-transparent static border transition-all hover:-translate-y-4 hover:bg-secondary ">
+                    summaries.map((summary, i) => <div key={i} className="card h-fit bg-transparent static border transition-all lg:hover:-translate-y-4 lg:hover:bg-secondary ">
                         <div className="group card-body items-center">
-                            <FontAwesomeIcon icon={summary.icon} className='h-16 my-2 text-primary transition-all duration-500 group-hover:scale-125 group-hover:text-white' />
-                            <h2 className="card-title text-3xl group-hover:text-base-content">{summary.number}</h2>
+                            <FontAwesomeIcon icon={summary.icon} className='h-16 my-2 text-primary transition-all duration-500 lg:group-hover:scale-125 lg:group-hover:text-white' />
+                            <h2 className="card-title text-3xl lg:group-hover:text-base-content">{summary.number}</h2>
                             <h2 className="text-2xl whitespace-nowrap">{summary.name}</h2>
-                            <h2 className="text-xl text-center hidden group-hover:inline-block">{summary.more}</h2>
+                            <h2 className="text-xl text-center lg:hidden lg:group-hover:inline-block">{summary.more}</h2>
                         </div>
                     </div>)
                 }

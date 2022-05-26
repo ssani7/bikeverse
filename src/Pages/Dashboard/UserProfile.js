@@ -1,6 +1,5 @@
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { faFacebookF, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { faBriefcase, faLocation, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { faBriefcase, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -33,7 +32,7 @@ const UserProfile = () => {
                     </div>
                     <label htmlFor="profile-modal" onClick={() => setOpenModal(true)} className="btn btn-primary modal-button">Update Profile</label>
                 </div>
-                <img src={photoURL ? photoURL : 'https://i.ibb.co/PcmH0f7/kids.jpg'} className="z-20 h-full w-2/3 right-0 shadow-2xl rounded-full mt-3 md:m-0 md:w-1/3 md:-right-10 md:rounded-lg md:h-fit md:scale-110  md:absolute lg:w-fit lg:h-full" alt='' />
+                <img src={photoURL ? photoURL : 'https://i.ibb.co/PcmH0f7/kids.jpg'} className="z-20 h-60 object-cover w-2/3 right-0 shadow-2xl rounded-full mt-3 md:m-0 md:w-1/3 md:-right-10 md:rounded-lg md:h-fit md:scale-110  md:absolute lg:w-fit lg:h-full" alt='' />
             </div>
             {
                 openModal && <ProfileModal></ProfileModal>

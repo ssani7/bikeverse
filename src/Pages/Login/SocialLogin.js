@@ -14,7 +14,7 @@ const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     const [signInWithFacebook, fUser, fLoading, fError] = useSignInWithFacebook(auth);
 
-    const [token] = useToken(user);
+    const [token] = useToken(user || fUser);
 
     useEffect(() => {
         if (user || fUser) {

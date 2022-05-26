@@ -27,7 +27,7 @@ const Reviews = () => {
                 <h2 className='text-center text-3xl my-6 font-semibold'>Customer Reviews</h2>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-6 md:mx-12 my-24 justify-items-center gap-10'>
                     {
-                        reviews.map((r, index) => <div key={index} className="card static transition-all bg-base-100 shadow-xl hover:bg-secondary hover:scale-110">
+                        reviews.map((r, index) => <div key={index} className="card static transition-all bg-base-100 shadow-xl lg:hover:bg-secondary lg:hover:scale-110">
                             <div className="card-body">
                                 <div className="card-title">
                                     <div className="avatar m-4">
