@@ -24,7 +24,7 @@ const Home = () => {
                     isLoading ? <Loading></Loading>
                         : <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-center mx-6 md:mx-16'>
                             {
-                                featured.slice(0, 12).map(product => <Product product={product}></Product>)
+                                featured.slice(0, 12).map(product => <Product product={product} key={product._id}></Product>)
                             }
                         </div>
                 }

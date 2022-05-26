@@ -11,20 +11,21 @@ const Header = () => {
         const confirm = window.confirm('Proceed to sign out?');
         if (confirm) {
             signOut(auth);
+            localStorage.removeItem('accessToken')
         }
     }
 
     const headerItems = <>
-        <li tabindex="0">
+        <li tabIndex="0">
         </li>
         <li><CustomLink to='/home'>Home</CustomLink></li>
         <li><CustomLink to='/shop'>Shop</CustomLink></li>
-        <li><CustomLink to='/contact'>Contact Us</CustomLink></li>
-        <li><CustomLink to='/'>About</CustomLink></li>
+        <li><CustomLink to='/dashboard'>Dashboard</CustomLink></li>
+        <li><CustomLink to='/about'>About</CustomLink></li>
         <li><CustomLink to='/reviews/all'>Reviews</CustomLink></li>
         {
             user
-                ? <li><span onClick={handleSignOut}>Sign Out</span></li>
+                ? <li><span className='ml-1' onClick={handleSignOut}>Sign Out</span></li>
                 : <li><CustomLink to='/login'>Login</CustomLink></li>
         }
     </>
@@ -38,6 +39,7 @@ const Header = () => {
                 <Link
                     style={{ textDecoration: match ? "underline" : "none" }}
                     to={to}
+
                     {...props}
                 >
                     {children}
@@ -49,20 +51,20 @@ const Header = () => {
 
     return (
         <div>
-            <div className="navbar lg:justify-between lg:px-16 bg-transparent absolute top-0 w-full z-50 text-black">
+            <div className="navbar lg:justify-between lg:px-16 bg-transparent absolute top-0 w-full z-50">
                 <div className="navbar-start flex justify-between items-center md:w-max">
                     <div className="dropdown">
-                        <label tabindex="0" className="btn btn-ghost lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                        <label tabIndex="0" className="btn btn-ghost lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
-                        <ul tabindex="0" className="menu menu-compact dropdown-content mt-3 p-2">
+                        <ul tabIndex="0" className="dropdown-content mt-3 p-2 bg-base-200 rounded-lg custom-menu px-6 mx-auto">
                             {headerItems}
                         </ul>
                     </div>
-                    <span className="normal-case text-3xl font-bold"><Link to='/home'> Bicycleverse</Link></span>
+                    <span className="normal-case text-3xl font-bold transition-all active:scale-95"><Link to='/home'> Bicycleverse</Link></span>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal p-0">
+                    <ul className="menu-horizontal p-0  custom-menu">
                         {headerItems}
                     </ul>
                 </div>
@@ -72,3 +74,9 @@ const Header = () => {
 };
 
 export default Header;
+
+
+/* 
+
+
+*/

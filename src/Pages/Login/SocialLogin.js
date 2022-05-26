@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import google from '../../images/icons/Social/google.png'
 import facebook from '../../images/icons/Social/facebook.png'
+import useToken from '../../hooks/useToken';
 
 const SocialLogin = () => {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     const [signInWithFacebook, fUser, fLoading, fError] = useSignInWithFacebook(auth);
 
-    // const [token] = useToken(user);
+    const [token] = useToken(user);
 
     useEffect(() => {
         if (user || fUser) {

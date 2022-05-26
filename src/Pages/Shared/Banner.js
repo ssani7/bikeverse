@@ -28,12 +28,12 @@ const Banner = () => {
 
     return (
         <div>
-            <div class="carousel w-full relative h-screen" >
-                <div ref={slideRef} id="slide1" class="carousel-item w-full">
+            <div className="carousel w-full relative h-screen" >
+                <div ref={slideRef} id="slide1" className="carousel-item w-full">
                     <div className='z-10 mx-auto my-auto'>
                         <h2 className='text-3xl md:text-6xl text-white great-vibes'>Welcome to the Universe of Bicycles</h2>
                     </div>
-                    <img src={bannerImage[index]} class="absolute w-full h-screen object-cover opacity-80" alt='' />
+                    <img src={bannerImage[index]} className="absolute w-full h-screen object-cover opacity-80" alt='' />
                 </div>
             </div>
         </div>

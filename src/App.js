@@ -13,6 +13,15 @@ import ProductDetails from './Pages/Products/ProductDetails';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import RequireAuth from './Pages/Login/RequireAuth';
+import Dashboard from './Pages/Dashboard/Dashboard';
+import UserOrders from './Pages/Dashboard/User/UserOrders';
+import UserProfile from './Pages/Dashboard/UserProfile';
+import RequireAdmin from './Pages/Login/RequireAdmin';
+import AddProduct from './Pages/Dashboard/Admin/AddProduct';
+import ManageAllOrders from './Pages/Dashboard/Admin/ManageAllOrders';
+import ManageProducts from './Pages/Dashboard/Admin/ManageProducts';
+import ManageUsers from './Pages/Dashboard/Admin/ManageUsers';
+import AddReview from './Pages/Dashboard/User/AddReview';
 
 function App() {
   return (
@@ -26,6 +35,18 @@ function App() {
           <RequireAuth>
             <ProductDetails />
           </RequireAuth>}>
+        </Route>
+        <Route path='/dashboard' element={<RequireAuth><Dashboard></Dashboard></RequireAuth>}>
+          <Route index element={<UserProfile />}></Route>
+          <Route path='addReview' element={<AddReview />}></Route>
+          <Route path='orders' element={<UserOrders />}></Route>
+
+          <Route path='addParts' element={<RequireAdmin><AddProduct /></RequireAdmin>}></Route>
+          <Route path='manageOrder' element={<RequireAdmin><ManageAllOrders /></RequireAdmin>}></Route>
+          <Route path='manegeProduct' element={<RequireAdmin><ManageProducts /></RequireAdmin>}></Route>
+          {/* <Route path='manageUser' element={<RequireAdmin><ManageUsers /></RequireAdmin>}></Route> */}
+          <Route path='manageUser' element={<ManageUsers />}></Route>
+
         </Route>
         <Route path='/shop/:category' element={<CategoryProducts />}></Route>
         <Route path='/reviews/:length' element={<Reviews />}></Route>

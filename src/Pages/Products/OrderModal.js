@@ -14,6 +14,7 @@ const OrderModal = ({ part, currentStock, setCurrentStock, quantity, setQuantity
 
 
     const handleAdd = (data) => {
+        const partName = data.name;
         const customerName = user?.displayName;
         const partId = _id;
         const email = user?.email;
@@ -22,7 +23,7 @@ const OrderModal = ({ part, currentStock, setCurrentStock, quantity, setQuantity
         const orderQuantity = parseInt(data.quantity);
         const newStock = currentStock - orderQuantity;
         setCurrentStock(newStock);
-        const order = { customerName, email, address, phone, orderQuantity, partId };
+        const order = { partId, partName, customerName, email, address, phone, orderQuantity };
 
         const config = {
             headers: {
@@ -30,11 +31,11 @@ const OrderModal = ({ part, currentStock, setCurrentStock, quantity, setQuantity
             }
         }
 
-        axios.post(`http://localhost:5000/orders`, order, config)
+        axios.post(`https://bikeverse-assignment-12.herokuapp.com/orders`, order, config)
             .then(res => {
                 const { data } = res;
                 if (data.insertedId) {
-                    axios.put(`http://localhost:5000/part/${partId}`, { newStock })
+                    axios.put(`https://bikeverse-assignment-12.herokuapp.com/part/${partId}`, { newStock })
                         .then(res => {
                             const { data } = res;
                             if (data.modifiedCount > 0) {
@@ -59,42 +60,42 @@ const OrderModal = ({ part, currentStock, setCurrentStock, quantity, setQuantity
     }
     return (
         <div>
-            <input type="checkbox" id="my-modal-3" class="modal-toggle" />
-            <div class="modal">
-                <div class="modal-box relative">
-                    <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+            <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+            <div className="modal">
+                <div className="modal-box relative">
+                    <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <form onSubmit={handleSubmit(handleAdd)} className='lg:mx-10'>
+                        <h1 className='text-lg font-bold mb-3'>{name}</h1>
+                        <label className='label'>
+                            <span className="label-text">Name</span>
+                        </label>
+                        <input type="text" value={user?.name || "Name Not Found"} disabled className="input input-bordered w-full " />
 
                         <label className='label'>
-                            <span class="label-text">Name</span>
+                            <span className="label-text">Email Address</span>
                         </label>
-                        <input type="text" value={user?.name || "Name Not Found"} disabled class="input input-bordered w-full " />
+                        <input type="email" value={user?.email || "Name Not Found"} disabled className="input input-bordered w-full" />
 
                         <label className='label'>
-                            <span class="label-text">Email Address</span>
-                        </label>
-                        <input type="email" value={user?.email || "Name Not Found"} disabled class="input input-bordered w-full" />
-
-                        <label className='label'>
-                            <span class="label-text">Shipping Address</span>
+                            <span className="label-text">Shipping Address</span>
                         </label>
 
-                        <input type="text" placeholder="Your Shipping Address" class="input input-bordered w-full"
+                        <input type="text" placeholder="Your Shipping Address" className="input input-bordered w-full"
                             {...register('address', {
                                 required: "Address is Required"
                             })} />
-                        {errors?.address && <p class="label-text text-red-500 mt-2 text-center">{errors.address.message}</p>}
+                        {errors?.address && <p className="label-text text-red-500 mt-2 text-center">{errors.address.message}</p>}
 
                         <label className='label'>
-                            <span class="label-text">Phone Number</span>
+                            <span className="label-text">Phone Number</span>
                         </label>
-                        <input type="number" placeholder="Your Phone Number" class="input input-bordered w-full" {...register('phone', {
+                        <input type="number" placeholder="Your Phone Number" className="input input-bordered w-full" {...register('phone', {
                             required: "Phone number is Required"
                         })} />
-                        {errors?.phone && <p class="label-text text-red-500 mt-2 text-center">{errors.phone.message}</p>}
+                        {errors?.phone && <p className="label-text text-red-500 mt-2 text-center">{errors.phone.message}</p>}
 
                         <label className='label'>
-                            <span class="label-text">Place Order Quantity</span>
+                            <span className="label-text">Place Order Quantity</span>
                         </label>
                         <input type="number" placeholder="Order Quantity"
                             value={quantity}
@@ -105,13 +106,13 @@ const OrderModal = ({ part, currentStock, setCurrentStock, quantity, setQuantity
                                     setQuantity(quantity);
                                 }
                             })}
-                            class="input input-bordered w-full" />
+                            className="input input-bordered w-full" />
 
-                        <button disabled={minimumSell > quantity || quantity > stock} class="btn btn-primary mt-6 w-full">Confirm</button>
+                        <button disabled={minimumSell > quantity || quantity > stock} className="btn btn-primary mt-6 w-full">Confirm</button>
 
-                        {minimumSell > quantity && <p class="label-text text-red-500 mt-2 text-center">Order must be greater than Minimum sellable</p>}
-                        {quantity > stock && <p class="label-text text-red-500 mt-2 text-center">Our Stock is limited</p>}
-                        {errors?.quantity && <p class="label-text text-red-500 mt-2 text-center">{errors.quantity.message}</p>}
+                        {minimumSell > quantity && <p className="label-text text-red-500 mt-2 text-center">Order must be greater than Minimum sellable</p>}
+                        {quantity > stock && <p className="label-text text-red-500 mt-2 text-center">Our Stock is limited</p>}
+                        {errors?.quantity && <p className="label-text text-red-500 mt-2 text-center">{errors.quantity.message}</p>}
                     </form>
                 </div>
             </div>

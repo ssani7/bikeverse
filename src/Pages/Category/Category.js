@@ -17,9 +17,9 @@ const Category = () => {
                     categories.map((category, index) => <div
                         key={index}
                         onClick={() => naivgate(`/shop/${category
-                            .category}`)} class="card rounded-none group shadow-xl h-64 relative w-full text-white cursor-pointer">
+                            .category}`)} className="card rounded-none group shadow-xl h-64 relative w-full text-white cursor-pointer">
                         <div className='z-10 h-full transform transition-all duration-300 group-hover:bg-gray-800 group-hover:bg-opacity-50'>
-                            <h2 class="card-title flex justify-center items-center h-full lg:invisible transform transition-all group-hover:visible group-hover:scale-110 ">{category.name}</h2>
+                            <h2 className="card-title flex justify-center items-center h-full lg:invisible transform transition-all group-hover:visible group-hover:scale-110 ">{category.name}</h2>
                         </div>
                         <img src={category.img} alt="Shoes" className='w-full h-full object-cover absolute' />
                     </div>)
