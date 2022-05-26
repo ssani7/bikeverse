@@ -1,10 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
 
-const UserRow = ({ user }) => {
+const UserRow = ({ user, setRefetch }) => {
     const { photo, email, name, role } = user;
+
+    const makeAdmin = email => {
+        fetch(`http://localhost:5000/makeAdmin/${email}`, {
+            method: 'PUT',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 403) {
+                    toast.error('Failed to Make an admin');
+                }
+                return res.json()
+            })
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success(`Sucessfully made ${email} an admin`);
+                    setRefetch();
+                }
+            })
+    }
+
     return (
         <>
-            <tr>
+            <tr className='hover'>
                 <td>
                     <div className="flex items-center space-x-3">
                         <div className="avatar">
@@ -15,17 +39,16 @@ const UserRow = ({ user }) => {
                         <div>
                             <div className='flex'>
                                 <div className="font-bold">{name}</div>
-                                <div class="badge badge-accent mx-2">{role}</div>
+                                {(role === 'admin') && <div className="badge badge-info mx-2">{role}</div>}
                             </div>
                             <div className="text-sm opacity-50">{email}</div>
                         </div>
                     </div>
                 </td>
                 <td>
-                    Zemlak, Daniel and Leannon
-                    <br />
+                    <button onClick={() => makeAdmin(email)} className="btn btn-primary btn-sm">Make Admin</button>
                 </td>
-                <td>Purple</td>
+                <td><button className="btn btn-error btn-sm">Remove User</button></td>
             </tr>
         </>
     );

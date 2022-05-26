@@ -12,6 +12,7 @@ const Dashboard = () => {
     if (loading || adminLoading) {
         return <Loading></Loading>
     }
+
     return (
         <div className='py-16'>
             <div className="drawer drawer-mobile">
@@ -22,21 +23,21 @@ const Dashboard = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="dashboard" className="drawer-overlay"></label>
-                    <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
+                    <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content text">
                         <li><Link to='/dashboard'>My Profile</Link></li>
-                        <li><Link to='manageUser'>Manage Users</Link></li>
 
                         {
                             admin && <>
-                                <li><Link to='orders'>MyOrders</Link></li>
                                 <li><Link to='manegeProduct'>Manage Products</Link></li>
+                                <li><Link to='manageUser'>Manage Users</Link></li>
+
                                 <li><Link to='manageOrder'>Manage Orders</Link></li>
                             </>
                         }
                         {
                             admin || <>
-                                <li><Link to='orders'>MyOrders</Link></li>
-                                <li><Link to='addReview'>MyOrders</Link></li>
+                                <li><Link to='orders'>My Orders</Link></li>
+                                <li><Link to='addReview'>Add Review</Link></li>
                             </>
                         }
                     </ul>

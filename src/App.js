@@ -25,7 +25,7 @@ import AddReview from './Pages/Dashboard/User/AddReview';
 
 function App() {
   return (
-    <div className="App">
+    <div data-theme="business" className="App">
       <Header></Header>
       <Routes>
         <Route path='/' element={<Home />}></Route>
@@ -44,9 +44,7 @@ function App() {
           <Route path='addParts' element={<RequireAdmin><AddProduct /></RequireAdmin>}></Route>
           <Route path='manageOrder' element={<RequireAdmin><ManageAllOrders /></RequireAdmin>}></Route>
           <Route path='manegeProduct' element={<RequireAdmin><ManageProducts /></RequireAdmin>}></Route>
-          {/* <Route path='manageUser' element={<RequireAdmin><ManageUsers /></RequireAdmin>}></Route> */}
-          <Route path='manageUser' element={<ManageUsers />}></Route>
-
+          <Route path='manageUser' element={<RequireAdmin><ManageUsers /></RequireAdmin>}></Route>
         </Route>
         <Route path='/shop/:category' element={<CategoryProducts />}></Route>
         <Route path='/reviews/:length' element={<Reviews />}></Route>

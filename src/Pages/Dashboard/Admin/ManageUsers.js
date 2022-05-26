@@ -4,7 +4,7 @@ import UserRow from './UserRow';
 
 const ManageUsers = () => {
     const [users, setUsers] = useState([])
-    const [setfetch, refetch] = useState(false)
+    const [refetch, setRefetch] = useState(false);
 
     useEffect(() => {
         fetch(`http://localhost:5000/users`, {
@@ -17,23 +17,27 @@ const ManageUsers = () => {
                 return res.json()
             })
             .then(data => setUsers(data))
-    }, [setfetch])
+    }, [refetch])
     return (
-        <div className="overflow-x-auto w-full">
+        <div className="overflow-x-auto h-full w-full">
             <table className="table w-full">
                 {/* <!-- head --> */}
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Job</th>
-                        <th>Favorite Color</th>
+                        <th></th>
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {/* <!-- row 1 --> */}
                     {
-                        users.map((user, i) => <UserRow key={i} user={user}></UserRow>)
+                        users.map((user, i) => <UserRow
+                            key={i}
+                            user={user}
+                            setRefetch={setRefetch}
+                        ></UserRow>)
                     }
 
                 </tbody>

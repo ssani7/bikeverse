@@ -48,7 +48,7 @@ const ProductDetails = () => {
                         <h1 className='mt-3 text-lg'><b>Category:</b> {category}</h1>
                         <h1 className='mt-3 mb-6'><b>Description:</b> {info}</h1>
 
-                        <label htmlFor="my-modal-3" onClick={() => setOpenModal(true)} className="btn btn-primary mt-6"><FontAwesomeIcon className='mr-2' icon={faCartPlus} />
+                        <label htmlhtmlFor="my-modal-3" onClick={() => setOpenModal(true)} className="btn btn-primary mt-6"><FontAwesomeIcon className='mr-2' icon={faCartPlus} />
                             Place Order</label>
 
 

@@ -30,17 +30,17 @@ const AllProducts = () => {
                 <h1 className='text-3xl font-bold text-center mb-14'>Get The Best Product For Your Adventure</h1>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-center mx-6 md:mx-16'>
                     {
-                        parts?.map(product => <Product key={product._id} product={product}></Product>)
+                        parts?.map((product) => <Product key={product._id} product={product}></Product>)
                     }
                 </div>
 
                 <div className="btn-group mt-10 items-center justify-center">
                     {
-                        pageCount && [...Array(pageCount)?.keys()].map(n => <button className={`btn btn-md ${page === n ? 'btn-active' : ''}`} onClick={() => setPage(n)}>{n + 1}</button>)
+                        pageCount && [...Array(pageCount)?.keys()].map((n, i) => <button key={i} className={`btn btn-md ${page === n ? 'btn-active' : ''}`} onClick={() => setPage(n)}>{n + 1}</button>)
                     }
                     <select onChange={e => setSize(e.target.value)} className="select select-bordered max-w-xs" defaultValue={size}>
                         <option>5</option>
-                        <option selected>10</option>
+                        <option>10</option>
                         <option>15</option>
                         <option>20</option>
                     </select>

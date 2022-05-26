@@ -14,7 +14,7 @@ const OrderModal = ({ part, currentStock, setCurrentStock, quantity, setQuantity
 
 
     const handleAdd = (data) => {
-        const partName = data.name;
+        const partName = name;
         const customerName = user?.displayName;
         const partId = _id;
         const email = user?.email;
@@ -23,7 +23,11 @@ const OrderModal = ({ part, currentStock, setCurrentStock, quantity, setQuantity
         const orderQuantity = parseInt(data.quantity);
         const newStock = currentStock - orderQuantity;
         setCurrentStock(newStock);
-        const order = { partId, partName, customerName, email, address, phone, orderQuantity };
+        const current = new Date();
+        const date = `${current.getDate()}/${current.getMonth()}/${current.getFullYear()}`
+        console.log(date)
+
+        const order = { partId, partName, customerName, email, address, phone, orderQuantity, date };
 
         const config = {
             headers: {
@@ -63,13 +67,13 @@ const OrderModal = ({ part, currentStock, setCurrentStock, quantity, setQuantity
             <input type="checkbox" id="my-modal-3" className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box relative">
-                    <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <label htmlhtmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <form onSubmit={handleSubmit(handleAdd)} className='lg:mx-10'>
                         <h1 className='text-lg font-bold mb-3'>{name}</h1>
                         <label className='label'>
                             <span className="label-text">Name</span>
                         </label>
-                        <input type="text" value={user?.name || "Name Not Found"} disabled className="input input-bordered w-full " />
+                        <input type="text" value={user?.displayName || "Name Not Found"} disabled className="input input-bordered w-full " />
 
                         <label className='label'>
                             <span className="label-text">Email Address</span>
