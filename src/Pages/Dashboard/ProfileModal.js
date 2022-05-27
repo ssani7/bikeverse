@@ -26,6 +26,8 @@ const ProfileModal = ({ setRefetch, refetch, user }) => {
 
     const [loading, setLoading] = useState(false);
 
+    console.log(emError)
+
     useEffect(() => {
         if (userLoading || emEpdating || updating || pUpdating) {
             setLoading(true);
@@ -37,7 +39,7 @@ const ProfileModal = ({ setRefetch, refetch, user }) => {
 
 
     const updateUserDb = (updatedData) => {
-        axios.put(`http://localhost:5000/user/${currentUser?.email}`, updatedData, {
+        axios.put(`https://bikeverse-assignment-12.herokuapp.com/user/${currentUser?.email}`, updatedData, {
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
@@ -125,31 +127,31 @@ const ProfileModal = ({ setRefetch, refetch, user }) => {
                         <label class="input-group input-group-md mt-3">
                             <span>Name</span>
                             <input onChange={(e) => setName(e.target.value)} type="text" placeholder="Update Name" class="input input-bordered input-md w-96" />
-                            <button onClick={() => handleUpdate("name")} class="btn btn-square w-fit px-3">Update
+                            <button disabled={name === ''} onClick={() => handleUpdate("name")} class="btn btn-square w-fit px-3">Update
                             </button>
                         </label>
                         <label class="input-group input-group-md mt-3">
                             <span>Email</span>
-                            <input onChange={(e) => setemail(e.target.value)} type="text" placeholder="Update Email" class="input input-bordered input-md w-96" />
-                            <button onClick={() => handleUpdate("email")} class="btn btn-square w-fit px-3">Update
+                            <input required onChange={(e) => setemail(e.target.value)} type="email" placeholder="Update Email" class="input input-bordered input-md w-96" />
+                            <button disabled={email === ""} onClick={() => handleUpdate("email")} class="btn btn-square w-fit px-3">Update
                             </button>
                         </label>
                         <label class="input-group input-group-md mt-3">
                             <span>Password</span>
                             <input onChange={(e) => setPassword(e.target.value)} type="text" placeholder="Update Password" class="input input-bordered input-md w-96" />
-                            <button onClick={() => handleUpdate('password')} class="btn btn-square w-fit px-3">Update
+                            <button disabled={password === ''} onClick={() => handleUpdate('password')} class="btn btn-square w-fit px-3">Update
                             </button>
                         </label>
                         <label class="input-group input-group-md mt-3">
                             <span>Profession</span>
                             <input onChange={(e) => setprofession(e.target.value)} type="text" placeholder="Update Profession" class="input input-bordered input-md w-96" />
-                            <button onClick={() => handleUpdate('profession')} class="btn btn-square w-fit px-3">Update
+                            <button disabled={profession === ''} onClick={() => handleUpdate('profession')} class="btn btn-square w-fit px-3">Update
                             </button>
                         </label>
                         <label class="input-group input-group-md mt-3">
                             <span>Address</span>
                             <input onChange={(e) => setaddress(e.target.value)} type="text" placeholder="Address" class="input input-bordered input-md w-96" />
-                            <button onClick={() => handleUpdate('address')} class="btn btn-square w-fit px-3">Update
+                            <button disabled={address === ''} onClick={() => handleUpdate('address')} class="btn btn-square w-fit px-3">Update
                             </button>
                         </label>
 
@@ -162,19 +164,19 @@ const ProfileModal = ({ setRefetch, refetch, user }) => {
                         <label class="input-group input-group-md mt-3">
                             <span>Facebook Profile Link</span>
                             <input onChange={(e) => setFacebook(e.target.value)} type="text" placeholder="Update Facebook Profile Link" class="input input-bordered input-md w-96" />
-                            <button onClick={() => handleUpdate('facebook')} class="btn btn-square w-fit px-3">Update
+                            <button disabled={facebook === ''} onClick={() => handleUpdate('facebook')} class="btn btn-square w-fit px-3">Update
                             </button>
                         </label>
                         <label class="input-group input-group-md mt-3">
                             <span>LinledIn Profile Link</span>
                             <input onChange={(e) => setlinkedIn(e.target.value)} type="text" placeholder="Update LinledIn Profile Link" class="input input-bordered input-md w-96" />
-                            <button onClick={() => handleUpdate('linkedIn')} class="btn btn-square w-fit px-3">Update
+                            <button disabled={linkedIn === ''} onClick={() => handleUpdate('linkedIn')} class="btn btn-square w-fit px-3">Update
                             </button>
                         </label>
                         <label class="input-group input-group-md mt-3">
                             <span>Twitter Profile Link</span>
                             <input onChange={(e) => settwitter(e.target.value)} type="text" placeholder="Update Twitter Profile Link" class="input input-bordered input-md w-96" />
-                            <button onClick={() => handleUpdate('twitter')} class="btn btn-square w-fit px-3">Update
+                            <button disabled={twitter === ''} onClick={() => handleUpdate('twitter')} class="btn btn-square w-fit px-3">Update
                             </button>
                         </label>
 

@@ -29,7 +29,7 @@ const UserOrders = () => {
                             orders.map((order, i) => <tr key={i} className="hover">
                                 <th>{i + 1}</th>
                                 <td>{order.partName}</td>
-                                <td>Desktop Support Technician</td>
+                                <td>{order.orderQuantity}</td>
                                 <td>{order.date}</td>
                                 <td>Purple</td>
                             </tr>)
@@ -38,8 +38,6 @@ const UserOrders = () => {
                 </table>
                     : <h2 className='text-center text-3xl font-semibold mt-12'>You do not have any orders</h2>
             }
-
-
         </div>
     );
 };

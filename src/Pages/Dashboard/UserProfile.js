@@ -4,16 +4,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useQuery } from 'react-query';
 import auth from '../../firebase.init';
-import useUser from '../../hooks/useUser';
+import useToken from '../../hooks/useToken';
 import Loading from '../Shared/Loading';
 import ProfileModal from './ProfileModal';
 
 const UserProfile = () => {
     const [user, loading] = useAuthState(auth);
+    const [userData, setUserData] = useState({})
+    const [refetch, setRefetch] = useState(false);
+    const [token] = useToken({ user });
 
-    const [userData, refetch, setRefetch] = useUser(user);
+    useEffect(() => {
+        axios.get(`https://bikeverse-assignment-12.herokuapp.com/user/${user?.email}`, {
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => {
+                const { data } = res;
+                setUserData(data)
+            })
+    }, [user, refetch]);
 
     const { photo, name, email, address, job, facebook, linkedIn, twitter } = userData;
     if (loading) {
@@ -45,7 +57,7 @@ const UserProfile = () => {
 
                     <label htmlFor="profile-modal" className="btn btn-primary modal-button">Update Profile</label>
                 </div>
-                <img src={photo ? photo : 'https://i.ibb.co/pzpVdPV/no-user-image-icon-3.jpg'} className="z-20 h-60 object-cover w-2/3 right-0 shadow-2xl rounded-full mt-3 md:m-0 md:w-1/3 md:-right-10 md:rounded-lg md:h-fit md:scale-110  md:absolute lg:w-fit lg:h-1/2" alt='' />
+                <img src={photo} className="z-20 h-60 object-cover w-2/3 right-0 shadow-2xl rounded-full mt-3 md:m-0 md:w-1/3 md:-right-10 md:rounded-lg md:h-fit md:scale-110  md:absolute lg:w-fit lg:h-1/2" alt='' />
             </div>
             {
                 <ProfileModal

@@ -31,7 +31,7 @@ const UserRow = ({ user, setRefetch }) => {
     }
 
     const removeUser = email => {
-        axios.delete(`http://localhost:5000/removeUser/${email}`, config)
+        axios.delete(`https://bikeverse-assignment-12.herokuapp.com/removeUser/${email}`, config)
             .then(res => {
                 if (res.status === 403) {
                     toast.error('Failed to Remove User');
