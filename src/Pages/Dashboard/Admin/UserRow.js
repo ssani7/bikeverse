@@ -48,7 +48,7 @@ const UserRow = ({ user, setRefetch }) => {
                     <div className="flex items-center space-x-3">
                         <div className="avatar">
                             <div className="mask mask-squircle w-12 h-12">
-                                <img src={photo ? photo : "https://i.ibb.co/pzpVdPV/no-user-image-icon-3.jpg"} alt="Avatar Tailwind CSS Component" />
+                                <img src={photo} alt="Avatar Tailwind CSS Component" />
                             </div>
                         </div>
                         <div>

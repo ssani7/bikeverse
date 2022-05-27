@@ -6,31 +6,16 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import auth from '../../firebase.init';
+import useUser from '../../hooks/useUser';
 import Loading from '../Shared/Loading';
 import ProfileModal from './ProfileModal';
 
 const UserProfile = () => {
     const [user, loading] = useAuthState(auth);
-    const [userData, setUserData] = useState({})
-    const [refetch, setRefetch] = useState(false)
 
-    useEffect(() => {
-        axios.get(`https://bikeverse-assignment-12.herokuapp.com/user/${user?.email}`, {
-            headers: {
-                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-            }
-        })
-            .then(res => {
-                const { data } = res;
-                setUserData(data)
-            })
-    }, [user, refetch])
+    const [userData, refetch, setRefetch] = useUser(user);
 
-
-
-    const { photo, name, email, address, job } = userData;
-    // const { address, job, facebook, linkedin, twitter } = userData?.details;
-
+    const { photo, name, email, address, job, facebook, linkedIn, twitter } = userData;
     if (loading) {
         return <Loading></Loading>
     }
@@ -49,15 +34,18 @@ const UserProfile = () => {
                     <p className="pt-4"><FontAwesomeIcon className='mr-2' icon={faBriefcase} /> {job ? job : "No Address Found"}</p>
 
                     <div className='my-10'>
-                        <h2>Social Profile Links</h2>
-                        <a target='_blank' href="https://twitter.com/sanaullahsani07" rel="noreferrer"><FontAwesomeIcon className='h-8 m-3 hover:text-primary hover:scale-125 transition-all' icon={faFacebookF} /></a>
-                        <a target='_blank' href="https://twitter.com/sanaullahsani07" rel="noreferrer"><FontAwesomeIcon className='h-8 m-3 hover:text-primary hover:scale-125 transition-all' icon={faLinkedin} /></a>
-                        <a target='_blank' href="https://twitter.com/sanaullahsani07" rel="noreferrer"><FontAwesomeIcon className='h-8 m-3 hover:text-primary hover:scale-125 transition-all' icon={faTwitter} /></a>
+                        {
+                            (linkedIn || facebook || twitter) ? <h2>Social Profile Links</h2> : <h2>Add Your Social Media Here</h2>
+                        }
+
+                        <a target='_blank' href={facebook} rel="noreferrer"><FontAwesomeIcon className='h-8 m-3 hover:text-primary hover:scale-125 transition-all' icon={faFacebookF} /></a>
+                        <a target='_blank' href={linkedIn} rel="noreferrer"><FontAwesomeIcon className='h-8 m-3 hover:text-primary hover:scale-125 transition-all' icon={faLinkedin} /></a>
+                        <a target='_blank' href={twitter} rel="noreferrer"><FontAwesomeIcon className='h-8 m-3 hover:text-primary hover:scale-125 transition-all' icon={faTwitter} /></a>
                     </div>
 
                     <label htmlFor="profile-modal" className="btn btn-primary modal-button">Update Profile</label>
                 </div>
-                <img src={photo} className="z-20 h-60 object-cover w-2/3 right-0 shadow-2xl rounded-full mt-3 md:m-0 md:w-1/3 md:-right-10 md:rounded-lg md:h-fit md:scale-110  md:absolute lg:w-fit lg:h-1/2" alt='' />
+                <img src={photo ? photo : 'https://i.ibb.co/pzpVdPV/no-user-image-icon-3.jpg'} className="z-20 h-60 object-cover w-2/3 right-0 shadow-2xl rounded-full mt-3 md:m-0 md:w-1/3 md:-right-10 md:rounded-lg md:h-fit md:scale-110  md:absolute lg:w-fit lg:h-1/2" alt='' />
             </div>
             {
                 <ProfileModal

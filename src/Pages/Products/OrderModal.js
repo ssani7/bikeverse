@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
@@ -54,6 +55,7 @@ const OrderModal = ({ part, currentStock, setCurrentStock, quantity, setQuantity
             })
             .catch(err => {
                 if (err.response.status === 401 || err.response.status === 403) {
+                    signOut(auth)
                     toast.error(`You do not have access. Try logging in again`)
                     return
                 }
