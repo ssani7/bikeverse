@@ -6,7 +6,7 @@ import { useUpdateEmail, useUpdatePassword, useUpdateProfile } from 'react-fireb
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
-const ProfileModal = ({ setOpenModal, user }) => {
+const ProfileModal = ({ setRefetch, refetch, user }) => {
     const [updateEmail, emEpdating, emError] = useUpdateEmail(auth);
     const [updatePassword, updating, error] = useUpdatePassword(auth);
     const [updateProfile, pUpdating, pError] = useUpdateProfile(auth);
@@ -21,7 +21,7 @@ const ProfileModal = ({ setOpenModal, user }) => {
     const [dp, setDp] = useState(null);
 
     const updateUserDb = (updatedData) => {
-        axios.put(`https://bikeverse-assignment-12.herokuapp.com/user/${user?.email}`, updatedData, {
+        axios.put(`http://localhost:5000/user/${user?.email}`, updatedData, {
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
@@ -31,6 +31,7 @@ const ProfileModal = ({ setOpenModal, user }) => {
                 console.log(data)
                 if (data) {
                     toast.success('Updated Profile');
+                    setRefetch(!refetch)
                 }
             })
             .catch(err => {
@@ -74,7 +75,6 @@ const ProfileModal = ({ setOpenModal, user }) => {
             default:
                 console.log(field)
         }
-        setOpenModal(false)
     }
     return (
         <div>
