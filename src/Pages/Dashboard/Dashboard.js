@@ -19,7 +19,7 @@ const Dashboard = () => {
                 <input id="dashboard" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col items-center justify-center">
                     <Outlet />
-                    <label htmlFor="dashboard" className="btn btn-primary drawer-button lg:hidden absolute bottom-16 left-6 rounded-full">&gt;</label>
+                    <label htmlFor="dashboard" className="btn btn-primary drawer-button lg:hidden absolute bottom-16 left-8 rounded-full">&gt;</label>
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="dashboard" className="drawer-overlay"></label>

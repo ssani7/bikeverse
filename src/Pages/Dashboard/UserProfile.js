@@ -1,27 +1,50 @@
 import { faFacebookF, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { faBriefcase, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { faAt, faBriefcase, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useQuery } from 'react-query';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 import ProfileModal from './ProfileModal';
 
 const UserProfile = () => {
     const [user, loading] = useAuthState(auth);
-    const { photoURL, displayName, email, address, job } = user;
+    const [userData, setUserData] = useState({})
     const [openModal, setOpenModal] = useState(false)
+
+    useEffect(() => {
+        axios.get(`https://bikeverse-assignment-12.herokuapp.com/user/${user?.email}`, {
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => {
+                const { data } = res;
+                setUserData(data)
+            })
+    }, [user])
+
+
+
+    const { photo, name, email, address, job, facebook, linkedin, twitter } = userData;
 
     if (loading) {
         return <Loading></Loading>
     }
 
     return (
-        <div className='h-full md:w-full flex justify-center items-center'>
+        <div className='h-full md:w-full lg:w-2/3 flex justify-center items-center'>
             <div className='bg-gray-700 mx-6 md:w-2/3 text-center md:text-left rounded-2xl flex flex-col-reverse items-center md:flex-row relative'>
                 <div className='w-full p-10 text-base-content'>
-                    <h1 className="text-5xl font-bold">{displayName ? displayName : 'No Name Found'}</h1>
+
+                    <h1 className="text-5xl font-bold">{name ? name : 'No Name Found'}</h1>
+
+                    <p className="pt-4"><FontAwesomeIcon className='mr-1' icon={faAt} /> {email}</p>
+
                     <p className="pt-4"><FontAwesomeIcon className='mr-2' icon={faLocationDot} /> {address ? address : "No Address Found"}</p>
+
                     <p className="pt-4"><FontAwesomeIcon className='mr-2' icon={faBriefcase} /> {job ? job : "No Address Found"}</p>
 
                     <div className='my-10'>
@@ -30,12 +53,15 @@ const UserProfile = () => {
                         <a target='_blank' href="https://twitter.com/sanaullahsani07" rel="noreferrer"><FontAwesomeIcon className='h-8 m-3 hover:text-primary hover:scale-125 transition-all' icon={faLinkedin} /></a>
                         <a target='_blank' href="https://twitter.com/sanaullahsani07" rel="noreferrer"><FontAwesomeIcon className='h-8 m-3 hover:text-primary hover:scale-125 transition-all' icon={faTwitter} /></a>
                     </div>
+
                     <label htmlFor="profile-modal" onClick={() => setOpenModal(true)} className="btn btn-primary modal-button">Update Profile</label>
                 </div>
-                <img src={photoURL ? photoURL : 'https://i.ibb.co/PcmH0f7/kids.jpg'} className="z-20 h-60 object-cover w-2/3 right-0 shadow-2xl rounded-full mt-3 md:m-0 md:w-1/3 md:-right-10 md:rounded-lg md:h-fit md:scale-110  md:absolute lg:w-fit lg:h-full" alt='' />
+                <img src={photo} className="z-20 h-60 object-cover w-2/3 right-0 shadow-2xl rounded-full mt-3 md:m-0 md:w-1/3 md:-right-10 md:rounded-lg md:h-fit md:scale-110  md:absolute lg:w-fit lg:h-1/2" alt='' />
             </div>
             {
-                openModal && <ProfileModal></ProfileModal>
+                openModal && <ProfileModal
+                    user={user}
+                    setOpenModal={setOpenModal}></ProfileModal>
             }
 
         </div>

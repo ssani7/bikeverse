@@ -74,9 +74,7 @@ const Login = () => {
                         {
                             loading
                                 ? <>
-                                    <button className='w-full mb-5 btn btn-outline normal-case'><div className='animate-spin border-4 rounded-full h-5 w-5 mr-3 border-t-gray-50'></div>
-                                        Logging In
-                                    </button>
+                                    <button class="btn w-full normal-case loading">Loggin In</button>
                                 </>
                                 :
                                 <input className="btn btn-outline btn-secondary w-full normal-case" type="submit" value='Log In' />

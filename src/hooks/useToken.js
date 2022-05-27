@@ -5,11 +5,12 @@ const useToken = (user) => {
 
     useEffect(() => {
         if (user) {
+            console.log(user)
             const { displayName, email, photoURL } = user?.user;
             const currentUser = { name: displayName, email: email, photo: photoURL }
 
             if (email) {
-                fetch(`https://bikeverse-assignment-12.herokuapp.com/user/${email}`, {
+                fetch(`https://bikeverse-assignment-12.herokuapp.com/loginUser/${email}`, {
                     method: 'PUT',
                     headers: {
                         'content-type': 'application/json'

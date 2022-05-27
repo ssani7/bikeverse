@@ -35,9 +35,9 @@ const ProductDetails = () => {
 
     return (
         <div>
-            <div className="hero min-h-screen my-20 lg:my-0">
-                <div className="hero-content mx-6 md:mx-16 flex-col lg:flex-row">
-                    <img src={image} className="lg:max-w-lg m-6 lg:mr-6 rounded-lg" alt='' />
+            <div className="md:hero py-20">
+                <div className="hero-content px-6 md:mx-16 flex-col lg:flex-row">
+                    <img src={image} className="max-w-xs md:max-w-lg lg:mr-6 rounded-lg" alt='' />
                     <div>
                         <h1 className="text-3xl md:text-5xl font-bold">{name}</h1>
                         <h1 className='mt-6 text-lg'><b>Price:</b> ${price}</h1>
@@ -48,7 +48,7 @@ const ProductDetails = () => {
                         <h1 className='mt-3 text-lg'><b>Category:</b> {category}</h1>
                         <h1 className='mt-3 mb-6'><b>Description:</b> {info}</h1>
 
-                        <label htmlhtmlFor="my-modal-3" onClick={() => setOpenModal(true)} className="btn btn-primary mt-6"><FontAwesomeIcon className='mr-2' icon={faCartPlus} />
+                        <label htmlFor="my-modal-3" onClick={() => setOpenModal(true)} className="btn btn-primary mt-6"><FontAwesomeIcon className='mr-2' icon={faCartPlus} />
                             Place Order</label>
 
 

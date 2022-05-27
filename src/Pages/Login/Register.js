@@ -25,11 +25,13 @@ const Register = () => {
 
     const [token] = useToken(user);
 
+
+
     if (token) {
         navigate(from, { replace: true })
     }
 
-    if (loading || updating) {
+    if (updating) {
         return <Loading></Loading>
     }
 
@@ -38,6 +40,10 @@ const Register = () => {
         const name = data.name;
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
+
+        if (!user?.photoURL) {
+            await updateProfile({ photoURL: 'https://i.ibb.co/pzpVdPV/no-user-image-icon-3.jpg' })
+        }
 
     }
     return (
@@ -121,9 +127,7 @@ const Register = () => {
                         {
                             loading
                                 ? <>
-                                    <button className='w-full max-w-xs mb-5 btn btn-outline normal-case'><div className='animate-spin border-4 rounded-full h-5 w-5 mr-3 border-t-gray-50'></div>
-                                        Signing Up
-                                    </button>
+                                    <button class="btn btn-outline btn-secondary w-full normal-case loading">Creating Account</button>
                                 </>
                                 :
                                 <input className="btn btn-outline btn-secondary w-full normal-case" type="submit" value='Sign Up' />

@@ -1,28 +1,43 @@
+import axios from 'axios';
+import { signOut } from 'firebase/auth';
 import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
+import auth from '../../../firebase.init';
 
 const UserRow = ({ user, setRefetch }) => {
     const { photo, email, name, role } = user;
 
+    const config = {
+        headers: {
+            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    }
+
     const makeAdmin = email => {
-        fetch(`https://bikeverse-assignment-12.herokuapp.com/makeAdmin/${email}`, {
-            method: 'PUT',
-            headers: {
-                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-            }
-        })
+
+        axios.put(`https://bikeverse-assignment-12.herokuapp.com/makeAdmin/${email}`, config)
             .then(res => {
                 if (res.status === 403) {
                     toast.error('Failed to Make an admin');
+                    signOut(auth)
                 }
-                return res.json()
-            })
-            .then(data => {
+                const { data } = res;
                 if (data.modifiedCount > 0) {
                     toast.success(`Sucessfully made ${email} an admin`);
                     setRefetch();
                 }
+            })
+    }
+
+    const removeUser = email => {
+        axios.delete(`http://localhost:5000/removeUser/${email}`, config)
+            .then(res => {
+                if (res.status === 403) {
+                    toast.error('Failed to Remove User');
+                }
+                toast.success(`Removed User ${name}`)
+                setRefetch()
             })
     }
 
@@ -33,7 +48,7 @@ const UserRow = ({ user, setRefetch }) => {
                     <div className="flex items-center space-x-3">
                         <div className="avatar">
                             <div className="mask mask-squircle w-12 h-12">
-                                <img src={photo} alt="Avatar Tailwind CSS Component" />
+                                <img src={photo ? photo : "https://i.ibb.co/pzpVdPV/no-user-image-icon-3.jpg"} alt="Avatar Tailwind CSS Component" />
                             </div>
                         </div>
                         <div>
@@ -46,9 +61,12 @@ const UserRow = ({ user, setRefetch }) => {
                     </div>
                 </td>
                 <td>
-                    <button onClick={() => makeAdmin(email)} className="btn btn-primary btn-sm">Make Admin</button>
+                    {
+                        role === "admin" || <button onClick={() => makeAdmin(email)} className="btn btn-primary btn-sm">Make Admin</button>
+                    }
+
                 </td>
-                <td><button className="btn btn-error btn-sm">Remove User</button></td>
+                <td><button onClick={() => removeUser(email)} className="btn btn-error btn-sm">Remove User</button></td>
             </tr>
         </>
     );

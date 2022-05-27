@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
@@ -9,6 +9,7 @@ import Loading from '../Shared/Loading';
 const OrderModal = ({ part, currentStock, setCurrentStock, quantity, setQuantity, setOpenModal }) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [user, loading] = useAuthState(auth);
+    const [orderLoading, setOrderLoading] = useState(false)
 
     const { _id, name, category, image, price, material, stock, minimumSell, info, origin } = part;
 
@@ -25,7 +26,8 @@ const OrderModal = ({ part, currentStock, setCurrentStock, quantity, setQuantity
         setCurrentStock(newStock);
         const current = new Date();
         const date = `${current.getDate()}/${current.getMonth()}/${current.getFullYear()}`
-        console.log(date)
+
+        setOrderLoading(true);
 
         const order = { partId, partName, customerName, email, address, phone, orderQuantity, date };
 
@@ -44,9 +46,9 @@ const OrderModal = ({ part, currentStock, setCurrentStock, quantity, setQuantity
                             const { data } = res;
                             if (data.modifiedCount > 0) {
                                 toast.success('Order Successful');
+                                setOrderLoading(false)
                                 setOpenModal(false)
                             }
-                            console.log(data)
                         })
                 }
             })
@@ -67,7 +69,7 @@ const OrderModal = ({ part, currentStock, setCurrentStock, quantity, setQuantity
             <input type="checkbox" id="my-modal-3" className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box relative">
-                    <label htmlhtmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <form onSubmit={handleSubmit(handleAdd)} className='lg:mx-10'>
                         <h1 className='text-lg font-bold mb-3'>{name}</h1>
                         <label className='label'>
@@ -112,7 +114,12 @@ const OrderModal = ({ part, currentStock, setCurrentStock, quantity, setQuantity
                             })}
                             className="input input-bordered w-full" />
 
-                        <button disabled={minimumSell > quantity || quantity > stock} className="btn btn-primary mt-6 w-full">Confirm</button>
+                        {
+                            orderLoading
+                                ? <button class="btn loading mt-6 w-full">loading</button>
+                                : <button disabled={minimumSell > quantity || quantity > stock} className="btn btn-primary mt-6 w-full">Confirm Order</button>
+                        }
+
 
                         {minimumSell > quantity && <p className="label-text text-red-500 mt-2 text-center">Order must be greater than Minimum sellable</p>}
                         {quantity > stock && <p className="label-text text-red-500 mt-2 text-center">Our Stock is limited</p>}
