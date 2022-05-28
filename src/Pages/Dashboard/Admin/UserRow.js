@@ -15,7 +15,7 @@ const UserRow = ({ user, refetch, setRefetch, index }) => {
 
     const makeAdmin = email => {
 
-        axios.put(`http://localhost:5000/makeAdmin/${email}`, config)
+        axios.put(`https://bikeverse-assignment-12.herokuapp.com/makeAdmin/${email}`, config)
             .then(res => {
                 if (res.status === 403 || res.status === 401) {
                     toast.error('Failed to Make an admin');
