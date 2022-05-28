@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
 import UserRow from './UserRow';
 
 const ManageUsers = () => {
@@ -24,6 +23,7 @@ const ManageUsers = () => {
                 {/* <!-- head --> */}
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Name</th>
                         <th></th>
                         <th></th>
@@ -33,9 +33,11 @@ const ManageUsers = () => {
                 <tbody>
                     {/* <!-- row 1 --> */}
                     {
-                        users.map((user, i) => <UserRow
-                            key={i}
+                        users.map((user, index) => <UserRow
+                            key={index}
+                            index={index + 1}
                             user={user}
+                            refetch={refetch}
                             setRefetch={setRefetch}
                         ></UserRow>)
                     }

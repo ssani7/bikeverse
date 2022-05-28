@@ -1,16 +1,14 @@
 import axios from 'axios';
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
-import { useAuthState, useUpdateEmail, useUpdatePassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useUpdateEmail, useUpdatePassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
-import Loading from '../Shared/Loading';
+import useToken from '../../hooks/useToken';
 
 const ProfileModal = ({ setRefetch, refetch, user }) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-
-    const [currentUser, userLoading] = useAuthState(auth)
     const [updateEmail, emEpdating, emError] = useUpdateEmail(auth);
     const [updatePassword, updating, error] = useUpdatePassword(auth);
     const [updateProfile, pUpdating, pError] = useUpdateProfile(auth);
@@ -26,20 +24,24 @@ const ProfileModal = ({ setRefetch, refetch, user }) => {
 
     const [loading, setLoading] = useState(false);
 
-    console.log(emError)
+    const [token] = useToken({ user });
 
     useEffect(() => {
-        if (userLoading || emEpdating || updating || pUpdating) {
+        if (emEpdating || updating || pUpdating) {
             setLoading(true);
         }
-        else if (!(userLoading || emEpdating || updating || pUpdating)) {
+        else if (!(emEpdating || updating || pUpdating)) {
             setLoading(false)
         }
-    }, [userLoading, emEpdating, updating, pUpdating])
+    }, [emEpdating, updating, pUpdating])
 
+    let showError;
+    if (error || emError || pError) {
+        showError = error || emError || pError;
+    }
 
     const updateUserDb = (updatedData) => {
-        axios.put(`https://bikeverse-assignment-12.herokuapp.com/user/${currentUser?.email}`, updatedData, {
+        axios.put(`https://bikeverse-assignment-12.herokuapp.com/user/${user?.email}`, updatedData, {
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
@@ -86,7 +88,10 @@ const ProfileModal = ({ setRefetch, refetch, user }) => {
                 updateUserDb({ name: name })
                 break
             case "email":
-                await updateEmail(email)
+                await updateEmail(email);
+                if (!emError) {
+                    updateUserDb({ email: email });
+                }
                 break
             case "password":
                 await updatePassword(password)
@@ -179,7 +184,7 @@ const ProfileModal = ({ setRefetch, refetch, user }) => {
                             <button disabled={twitter === ''} onClick={() => handleUpdate('twitter')} class="btn btn-square w-fit px-3">Update
                             </button>
                         </label>
-
+                        <p className='text-center text-error text-sm'>{showError?.message}</p>
                     </div>
 
                 </div>

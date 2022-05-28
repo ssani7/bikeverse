@@ -1,11 +1,10 @@
 import axios from 'axios';
 import { signOut } from 'firebase/auth';
-import React, { useEffect } from 'react';
-import { useQuery } from 'react-query';
+import React from 'react';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 
-const UserRow = ({ user, setRefetch }) => {
+const UserRow = ({ user, refetch, setRefetch, index }) => {
     const { photo, email, name, role } = user;
 
     const config = {
@@ -25,7 +24,7 @@ const UserRow = ({ user, setRefetch }) => {
                 const { data } = res;
                 if (data.modifiedCount > 0) {
                     toast.success(`Sucessfully made ${email} an admin`);
-                    setRefetch();
+                    setRefetch(!refetch);
                 }
             })
     }
@@ -37,13 +36,16 @@ const UserRow = ({ user, setRefetch }) => {
                     toast.error('Failed to Remove User');
                 }
                 toast.success(`Removed User ${name}`)
-                setRefetch()
+                setRefetch(!refetch)
             })
     }
 
     return (
         <>
             <tr className='hover'>
+                <td>
+                    {index}
+                </td>
                 <td>
                     <div className="flex items-center space-x-3">
                         <div className="avatar">

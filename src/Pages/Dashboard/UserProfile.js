@@ -5,9 +5,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
-import useToken from '../../hooks/useToken';
 import Loading from '../Shared/Loading';
 import ProfileModal from './ProfileModal';
+import useToken from '../../hooks/useToken'
 
 const UserProfile = () => {
     const [user, loading] = useAuthState(auth);
@@ -28,6 +28,7 @@ const UserProfile = () => {
     }, [user, refetch]);
 
     const { photo, name, email, address, job, facebook, linkedIn, twitter } = userData;
+
     if (loading) {
         return <Loading></Loading>
     }

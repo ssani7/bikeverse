@@ -5,7 +5,6 @@ const useToken = (user) => {
 
     useEffect(() => {
         if (user) {
-            console.log(user.user)
             const { displayName, email, photoURL } = user?.user;
             const currentUser = { name: displayName, email: email, photo: photoURL }
 
