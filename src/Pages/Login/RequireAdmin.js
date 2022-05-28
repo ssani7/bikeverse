@@ -19,7 +19,7 @@ function RequireAdmin({ children }) {
         return <Navigate to="/home" state={{ from: location }} replace />;
     }
 
-    if (!token) {
+    if (!user) {
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
 
