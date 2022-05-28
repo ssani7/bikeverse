@@ -28,7 +28,7 @@ const AddProduct = () => {
 
         const part = { name, minimumSell, stock, category, info, price, material, origin, image };
 
-        axios.post(`http://localhost:5000/parts`, part, {
+        axios.post(`https://bikeverse-assignment-12.herokuapp.com/parts`, part, {
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
@@ -46,20 +46,20 @@ const AddProduct = () => {
     }
 
     return (
-        <div class="card flex-shrink-0 w-full max-w-3xl shadow-2xl bg-base-100">
-            <div class="card-body">
+        <div className="card flex-shrink-0 w-full max-w-3xl shadow-2xl bg-base-100">
+            <div className="card-body">
                 <form onSubmit={handleSubmit(addProduct)} >
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Product Name</span>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Product Name</span>
                         </label>
-                        <input type="text" placeholder="Product Name" class="input input-bordered" {...register("name", { required: true })} />
+                        <input type="text" placeholder="Product Name" className="input input-bordered" {...register("name", { required: true })} />
                     </div>
-                    <div class="form-control w-full max-w-xs">
-                        <label class="label">
-                            <span class="label-text">Pick the best fantasy franchise</span>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Pick the best fantasy franchise</span>
                         </label>
-                        <select class="select select-bordered" {...register("category", { required: true })}>
+                        <select className="select select-bordered" {...register("category", { required: true })}>
                             <option>Sports</option>
                             <option>Outdoors</option>
                             <option>Kids</option>
@@ -67,50 +67,50 @@ const AddProduct = () => {
                             <option>Women</option>
                         </select>
                     </div>
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Minimum Sellable</span>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Minimum Sellable</span>
                         </label>
-                        <input type="number" placeholder="Minimum Sellable" class="input input-bordered" {...register("minimum", { required: true })} />
+                        <input type="number" placeholder="Minimum Sellable" className="input input-bordered" {...register("minimum", { required: true })} />
                     </div>
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Stock</span>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Stock</span>
                         </label>
-                        <input type="number" placeholder="Stock" class="input input-bordered" {...register("stock", { required: true })} />
+                        <input type="number" placeholder="Stock" className="input input-bordered" {...register("stock", { required: true })} />
                     </div>
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Price</span>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Price</span>
                         </label>
-                        <input type="number" placeholder="Price" class="input input-bordered" {...register("price", { required: true })} />
+                        <input type="number" placeholder="Price" className="input input-bordered" {...register("price", { required: true })} />
                     </div>
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Material</span>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Material</span>
                         </label>
-                        <input type="text" placeholder="Material" class="input input-bordered" {...register("material", { required: true })} />
+                        <input type="text" placeholder="Material" className="input input-bordered" {...register("material", { required: true })} />
                     </div>
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Origin</span>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Origin</span>
                         </label>
-                        <input type="text" placeholder="Origin" class="input input-bordered" {...register("origin", { required: true })} />
+                        <input type="text" placeholder="Origin" className="input input-bordered" {...register("origin", { required: true })} />
                     </div>
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Product Details</span>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Product Details</span>
                         </label>
-                        <textarea class="textarea textarea-bordered h-24" placeholder="Product Details" {...register("info", { required: true })}></textarea>
+                        <textarea className="textarea textarea-bordered h-24" placeholder="Product Details" {...register("info", { required: true })}></textarea>
                     </div>
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Product Photo</span>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Product Photo</span>
                         </label>
-                        <input type="file" placeholder="Product Photo" class="input input-bordered" {...register("image")} />
+                        <input type="file" placeholder="Product Photo" className="input input-bordered" {...register("image")} />
                     </div>
-                    <div class="form-control mt-6">
-                        <button class="btn btn-primary">Login</button>
+                    <div className="form-control mt-6">
+                        <button className="btn btn-primary">Login</button>
                     </div>
                 </form>
             </div>

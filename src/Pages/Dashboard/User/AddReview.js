@@ -31,7 +31,7 @@ const AddReview = () => {
                 const { data } = res;
                 setImage(data.data.url);
 
-                axios.post(`http://localhost:5000/reviews`, UserReview, {
+                axios.post(`https://bikeverse-assignment-12.herokuapp.com/reviews`, UserReview, {
                     headers: {
                         'authorization': `Bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -50,26 +50,26 @@ const AddReview = () => {
     }
 
     return (
-        <div class="card flex-shrink-0 w-full max-w-3xl shadow-2xl bg-base-100">
-            <div class="card-body">
+        <div className="card flex-shrink-0 w-full max-w-3xl shadow-2xl bg-base-100">
+            <div className="card-body">
                 <form onSubmit={handleSubmit(addReview)} >
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Title Name</span>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Title Name</span>
                         </label>
-                        <input type="text" placeholder="Title" class="input input-bordered" {...register("title", { required: true })} />
+                        <input type="text" placeholder="Title" className="input input-bordered" {...register("title", { required: true })} />
                     </div>
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Product Name</span>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Product Name</span>
                         </label>
-                        <input type="text" placeholder="Product Name" class="input input-bordered" />
+                        <input type="text" placeholder="Product Name" className="input input-bordered" />
                     </div>
-                    <div class="form-control w-full max-w-xs">
-                        <label class="label">
-                            <span class="label-text">Rate your review out of 5</span>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Rate your review out of 5</span>
                         </label>
-                        <select class="select select-bordered" {...register("ratings", { required: true })}>
+                        <select className="select select-bordered" {...register("ratings", { required: true })}>
                             <option>1</option>
                             <option>1</option>
                             <option>3</option>
@@ -77,20 +77,20 @@ const AddReview = () => {
                             <option>5</option>
                         </select>
                     </div>
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Details</span>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Details</span>
                         </label>
-                        <textarea class="textarea textarea-bordered h-24" placeholder="Write a review" {...register("review", { required: true })}></textarea>
+                        <textarea className="textarea textarea-bordered h-24" placeholder="Write a review" {...register("review", { required: true })}></textarea>
                     </div>
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Photo</span>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Photo</span>
                         </label>
-                        <input type="file" placeholder="Product Photo" class="input input-bordered" {...register("image")} />
+                        <input type="file" placeholder="Product Photo" className="input input-bordered" {...register("image")} />
                     </div>
-                    <div class="form-control mt-6">
-                        <button class="btn btn-primary">Submit Review</button>
+                    <div className="form-control mt-6">
+                        <button className="btn btn-primary">Submit Review</button>
                     </div>
                 </form>
             </div>

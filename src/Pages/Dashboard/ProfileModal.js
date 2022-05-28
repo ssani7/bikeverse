@@ -123,65 +123,65 @@ const ProfileModal = ({ setRefetch, refetch, user }) => {
             <div className="modal">
                 <div className="modal-box w-11/12 max-w-5xl ">
                     {
-                        loading && <button class="btn loading absolute w-full h-full opacity-75 left-0 top-0">Updating Profile</button>
+                        loading && <button className="btn loading absolute w-full h-full opacity-75 left-0 top-0">Updating Profile</button>
                     }
                     <label htmlFor="profile-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <h3 className="text-lg font-bold">Update Your Profile</h3>
-                    <div class="form-control w-fit mx-auto">
+                    <div className="form-control w-fit mx-auto">
 
-                        <label class="input-group input-group-md mt-3">
+                        <label className="input-group input-group-md mt-3">
                             <span>Name</span>
-                            <input onChange={(e) => setName(e.target.value)} type="text" placeholder="Update Name" class="input input-bordered input-md w-96" />
-                            <button disabled={name === ''} onClick={() => handleUpdate("name")} class="btn btn-square w-fit px-3">Update
+                            <input onChange={(e) => setName(e.target.value)} type="text" placeholder="Update Name" className="input input-bordered input-md w-96" />
+                            <button disabled={name === ''} onClick={() => handleUpdate("name")} className="btn btn-square w-fit px-3">Update
                             </button>
                         </label>
-                        <label class="input-group input-group-md mt-3">
+                        <label className="input-group input-group-md mt-3">
                             <span>Email</span>
-                            <input required onChange={(e) => setemail(e.target.value)} type="email" placeholder="Update Email" class="input input-bordered input-md w-96" />
-                            <button disabled={email === ""} onClick={() => handleUpdate("email")} class="btn btn-square w-fit px-3">Update
+                            <input required onChange={(e) => setemail(e.target.value)} type="email" placeholder="Update Email" className="input input-bordered input-md w-96" />
+                            <button disabled={email === ""} onClick={() => handleUpdate("email")} className="btn btn-square w-fit px-3">Update
                             </button>
                         </label>
-                        <label class="input-group input-group-md mt-3">
+                        <label className="input-group input-group-md mt-3">
                             <span>Password</span>
-                            <input onChange={(e) => setPassword(e.target.value)} type="text" placeholder="Update Password" class="input input-bordered input-md w-96" />
-                            <button disabled={password === ''} onClick={() => handleUpdate('password')} class="btn btn-square w-fit px-3">Update
+                            <input onChange={(e) => setPassword(e.target.value)} type="text" placeholder="Update Password" className="input input-bordered input-md w-96" />
+                            <button disabled={password === ''} onClick={() => handleUpdate('password')} className="btn btn-square w-fit px-3">Update
                             </button>
                         </label>
-                        <label class="input-group input-group-md mt-3">
+                        <label className="input-group input-group-md mt-3">
                             <span>Profession</span>
-                            <input onChange={(e) => setprofession(e.target.value)} type="text" placeholder="Update Profession" class="input input-bordered input-md w-96" />
-                            <button disabled={profession === ''} onClick={() => handleUpdate('profession')} class="btn btn-square w-fit px-3">Update
+                            <input onChange={(e) => setprofession(e.target.value)} type="text" placeholder="Update Profession" className="input input-bordered input-md w-96" />
+                            <button disabled={profession === ''} onClick={() => handleUpdate('profession')} className="btn btn-square w-fit px-3">Update
                             </button>
                         </label>
-                        <label class="input-group input-group-md mt-3">
+                        <label className="input-group input-group-md mt-3">
                             <span>Address</span>
-                            <input onChange={(e) => setaddress(e.target.value)} type="text" placeholder="Address" class="input input-bordered input-md w-96" />
-                            <button disabled={address === ''} onClick={() => handleUpdate('address')} class="btn btn-square w-fit px-3">Update
+                            <input onChange={(e) => setaddress(e.target.value)} type="text" placeholder="Address" className="input input-bordered input-md w-96" />
+                            <button disabled={address === ''} onClick={() => handleUpdate('address')} className="btn btn-square w-fit px-3">Update
                             </button>
                         </label>
 
-                        <label class="input-group input-group-md mt-3">
+                        <label className="input-group input-group-md mt-3">
                             <span>Display Picture</span>
-                            <input {...register('dp')} type="file" placeholder="Update Display Picture" class="input input-bordered input-md w-96" />
-                            <button onClick={handleSubmit(onSubmit)} class="btn btn-square w-fit px-3">Update
+                            <input {...register('dp')} type="file" placeholder="Update Display Picture" className="input input-bordered input-md w-96" />
+                            <button onClick={handleSubmit(onSubmit)} className="btn btn-square w-fit px-3">Update
                             </button>
                         </label>
-                        <label class="input-group input-group-md mt-3">
+                        <label className="input-group input-group-md mt-3">
                             <span>Facebook Profile Link</span>
-                            <input onChange={(e) => setFacebook(e.target.value)} type="text" placeholder="Update Facebook Profile Link" class="input input-bordered input-md w-96" />
-                            <button disabled={facebook === ''} onClick={() => handleUpdate('facebook')} class="btn btn-square w-fit px-3">Update
+                            <input onChange={(e) => setFacebook(e.target.value)} type="text" placeholder="Update Facebook Profile Link" className="input input-bordered input-md w-96" />
+                            <button disabled={facebook === ''} onClick={() => handleUpdate('facebook')} className="btn btn-square w-fit px-3">Update
                             </button>
                         </label>
-                        <label class="input-group input-group-md mt-3">
+                        <label className="input-group input-group-md mt-3">
                             <span>LinledIn Profile Link</span>
-                            <input onChange={(e) => setlinkedIn(e.target.value)} type="text" placeholder="Update LinledIn Profile Link" class="input input-bordered input-md w-96" />
-                            <button disabled={linkedIn === ''} onClick={() => handleUpdate('linkedIn')} class="btn btn-square w-fit px-3">Update
+                            <input onChange={(e) => setlinkedIn(e.target.value)} type="text" placeholder="Update LinledIn Profile Link" className="input input-bordered input-md w-96" />
+                            <button disabled={linkedIn === ''} onClick={() => handleUpdate('linkedIn')} className="btn btn-square w-fit px-3">Update
                             </button>
                         </label>
-                        <label class="input-group input-group-md mt-3">
+                        <label className="input-group input-group-md mt-3">
                             <span>Twitter Profile Link</span>
-                            <input onChange={(e) => settwitter(e.target.value)} type="text" placeholder="Update Twitter Profile Link" class="input input-bordered input-md w-96" />
-                            <button disabled={twitter === ''} onClick={() => handleUpdate('twitter')} class="btn btn-square w-fit px-3">Update
+                            <input onChange={(e) => settwitter(e.target.value)} type="text" placeholder="Update Twitter Profile Link" className="input input-bordered input-md w-96" />
+                            <button disabled={twitter === ''} onClick={() => handleUpdate('twitter')} className="btn btn-square w-fit px-3">Update
                             </button>
                         </label>
                         <p className='text-center text-error text-sm'>{showError?.message}</p>

@@ -22,6 +22,7 @@ const Header = () => {
         <li><CustomLink to='/shop'>Shop</CustomLink></li>
         <li><CustomLink to='/dashboard'>Dashboard</CustomLink></li>
         <li><CustomLink to='/portfolio'>About Developer</CustomLink></li>
+        <li><CustomLink to='/blogs'>Blogs</CustomLink></li>
         <li><CustomLink to='/reviews/all'>Reviews</CustomLink></li>
         {
             user

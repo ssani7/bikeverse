@@ -118,7 +118,7 @@ const OrderModal = ({ part, currentStock, setCurrentStock, quantity, setQuantity
 
                         {
                             orderLoading
-                                ? <button class="btn loading mt-6 w-full">loading</button>
+                                ? <button className="btn loading mt-6 w-full">loading</button>
                                 : <button disabled={minimumSell > quantity || quantity > stock} className="btn btn-primary mt-6 w-full">Confirm Order</button>
                         }
 

@@ -45,11 +45,11 @@ const Register = () => {
     }
     return (
         <>
-            <div class="hero min-h-screen bg-base-200">
-                <div class="hero-content flex-col lg:flex-row pt-20 md:pt-28 lg:pt-0">
-                    <div class="text-center lg:text-left">
-                        <h1 class="text-5xl font-bold text-accent">Sign Up now!</h1>
-                        <p class="py-6">Become a part of Bikeverse. Buy the best parts for your adventure with quality support</p>
+            <div className="hero min-h-screen bg-base-200">
+                <div className="hero-content flex-col lg:flex-row pt-20 md:pt-28 lg:pt-0">
+                    <div className="text-center lg:text-left">
+                        <h1 className="text-5xl font-bold text-accent">Sign Up now!</h1>
+                        <p className="py-6">Become a part of Bikeverse. Buy the best parts for your adventure with quality support</p>
                     </div>
 
                     {/* sign up form */}
@@ -133,7 +133,7 @@ const Register = () => {
                                     {
                                         loading
                                             ? <>
-                                                <button class="btn btn-outline btn-secondary w-full normal-case loading">Creating Account</button>
+                                                <button className="btn btn-outline btn-secondary w-full normal-case loading">Creating Account</button>
                                             </>
                                             :
                                             <input className="btn btn-outline btn-secondary w-full normal-case" type="submit" value='Sign Up' />

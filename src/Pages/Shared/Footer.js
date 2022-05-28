@@ -5,26 +5,26 @@ import { faFacebookF, faTwitter } from '@fortawesome/free-brands-svg-icons';
 const Footer = () => {
     return (
         <div>
-            <footer className="footer p-10 bg-base-200 text-base-content justify-center md:justify-evenly ">
+            <footer className="footer grid-cols-3 p-10 bg-base-200 text-base-content justify-center md:justify-evenly ">
                 <div className=''>
                     <span className="footer-title">Services</span>
-                    <a className="link link-hover">Branding</a>
+                    <a className="link link-hover">Web Applications</a>
                     <a className="link link-hover">Design</a>
-                    <a className="link link-hover">Marketing</a>
-                    <a className="link link-hover">Advertisement</a>
+                    <a className="link link-hover">Database</a>
+                    <a className="link link-hover">Development</a>
                 </div>
                 <div className=''>
-                    <span className="footer-title">Company</span>
-                    <a className="link link-hover">About us</a>
-                    <a className="link link-hover">Contact</a>
-                    <a className="link link-hover">Jobs</a>
-                    <a className="link link-hover">Press kit</a>
+                    <span className="footer-title">Skills</span>
+                    <a className="link link-hover">React JS</a>
+                    <a className="link link-hover">Node.js</a>
+                    <a className="link link-hover">MongoDb</a>
+                    <a className="link link-hover">Firebase</a>
                 </div>
                 <div className=''>
-                    <span className="footer-title">Legal</span>
-                    <a className="link link-hover">Terms of use</a>
-                    <a className="link link-hover">Privacy policy</a>
-                    <a className="link link-hover">Cookie policy</a>
+                    <span className="footer-title">Design</span>
+                    <a className="link link-hover">CSS</a>
+                    <a className="link link-hover">Tailwind</a>
+                    <a className="link link-hover">Bootstrap</a>
                 </div>
             </footer>
             <footer className="footer px-10 py-4 border-t bg-base-200 text-base-content border-base-300 justify-center lg:justify-evenly">

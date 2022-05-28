@@ -7,10 +7,10 @@ import { toast } from 'react-toastify';
 import Loading from '../../Shared/Loading';
 
 const ManageProducts = () => {
-    const { data: parts, isLoading, refetch } = useQuery('parts', () => fetch('http://localhost:5000/parts').then(res => res.json()));
+    const { data: parts, isLoading, refetch } = useQuery('parts', () => fetch('https://bikeverse-assignment-12.herokuapp.com/parts').then(res => res.json()));
 
     const deletePart = (part) => {
-        axios.delete(`http://localhost:5000/part/${part._id}`, {
+        axios.delete(`https://bikeverse-assignment-12.herokuapp.com/part/${part._id}`, {
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }

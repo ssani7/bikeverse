@@ -52,11 +52,11 @@ const Login = () => {
 
     return (
         <>
-            <div class="hero min-h-screen bg-base-200">
-                <div class="hero-content flex-col lg:flex-row-reverse pt-20 md:pt-28 lg:pt-0">
-                    <div class="text-center lg:text-left">
-                        <h1 class="text-5xl font-bold text-accent">Login now!</h1>
-                        <p class="py-3 md:py-6">Welcome back to the universe of bicycles. Where Your adventure becomes more enjoyable</p>
+            <div className="hero min-h-screen bg-base-200">
+                <div className="hero-content flex-col lg:flex-row-reverse pt-20 md:pt-28 lg:pt-0">
+                    <div className="text-center lg:text-left">
+                        <h1 className="text-5xl font-bold text-accent">Login now!</h1>
+                        <p className="py-3 md:py-6">Welcome back to the universe of bicycles. Where Your adventure becomes more enjoyable</p>
                     </div>
                     <div className='w-full md:max-w-2xl mx-auto lg:pt-32 h-screen'>
                         <div className="card mx-6 md:mx-16 bg-gray-800 shadow-xl">
@@ -98,12 +98,12 @@ const Login = () => {
                                     {
                                         loading
                                             ? <>
-                                                <button class="btn w-full normal-case loading">Loggin In</button>
+                                                <button className="btn w-full normal-case loading">Loggin In</button>
                                             </>
                                             :
                                             <input className="btn btn-outline btn-secondary w-full normal-case" type="submit" value='Log In' />
                                     }
-                                    <small className='text-center mt-2' >Forgot Password?<span onClick={handleSubmit(handdleReset)} type="submit" class="text-accent ml-1 cursor-pointer font-semibold">Click to reset Password</span></small>
+                                    <small className='text-center mt-2' >Forgot Password?<span onClick={handleSubmit(handdleReset)} type="submit" className="text-accent ml-1 cursor-pointer font-semibold">Click to reset Password</span></small>
                                 </form>
 
                                 <p className="text-center mb-2"><small>New to Cameraverse? <Link to='/register' className='cursor-pointer text-accent font-semibold'>Create an account</Link></small></p>

@@ -9,7 +9,7 @@ import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading';
 
 const ManageAllOrders = () => {
-    const { isLoading, data: orders, refetch } = useQuery('orders', () => fetch(`http://localhost:5000/orders`, {
+    const { isLoading, data: orders, refetch } = useQuery('orders', () => fetch(`https://bikeverse-assignment-12.herokuapp.com/orders`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -23,7 +23,7 @@ const ManageAllOrders = () => {
 
     const cancelOrder = async (order) => {
 
-        await axios.delete(`http://localhost:5000/order/${order._id}`, {
+        await axios.delete(`https://bikeverse-assignment-12.herokuapp.com/order/${order._id}`, {
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
