@@ -15,7 +15,7 @@ const AddReview = () => {
         return <Loading></Loading>
     }
 
-    const addReview = (data) => {
+    const addReview = async (data) => {
         const name = user.displayName;
         const ratings = parseInt(data.ratings);
         const formData = new FormData();
@@ -26,27 +26,27 @@ const AddReview = () => {
         const UserReview = { name, ratings, review, title, image }
 
 
-        axios.post(`https://api.imgbb.com/1/upload?key=${imageApiKey}`, formData)
+        await axios.post(`https://api.imgbb.com/1/upload?key=${imageApiKey}`, formData)
             .then(res => {
                 const { data } = res;
                 setImage(data.data.url);
-
-                axios.post(`https://bikeverse-assignment-12.herokuapp.com/reviews`, UserReview, {
-                    headers: {
-                        'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-                    }
-                })
-                    .then(res => {
-                        if (res.status === 401 || res.status === 403) {
-                            toast.error('Failed, Try logging in again')
-                        }
-                        const { data } = res;
-                        if (data.insertedId) {
-                            toast.success("Thanks For Your Review. Keep Rocking");
-                            reset();
-                        }
-                    })
             });
+
+        await axios.post(`https://bikeverse-assignment-12.herokuapp.com/reviews`, UserReview, {
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    toast.error('Failed, Try logging in again')
+                }
+                const { data } = res;
+                if (data.insertedId) {
+                    toast.success("Thanks For Your Review. Keep Rocking");
+                    reset();
+                }
+            })
     }
 
     return (
