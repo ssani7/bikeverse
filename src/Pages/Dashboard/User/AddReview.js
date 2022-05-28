@@ -23,7 +23,6 @@ const AddReview = () => {
         const review = data.review;
         const title = data.title;
         const imageApiKey = '906bfdafb7a4a5b92021d570714ff50f';
-        const UserReview = { name, ratings, review, title, image }
 
 
         await axios.post(`https://api.imgbb.com/1/upload?key=${imageApiKey}`, formData)
@@ -32,12 +31,16 @@ const AddReview = () => {
                 setImage(data.data.url);
             });
 
+
+        const UserReview = { name, ratings, review, title, image }
+
         await axios.post(`https://bikeverse-assignment-12.herokuapp.com/reviews`, UserReview, {
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
             .then(res => {
+                console.log(image)
                 if (res.status === 401 || res.status === 403) {
                     toast.error('Failed, Try logging in again')
                 }
