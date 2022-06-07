@@ -1,11 +1,12 @@
 import { signOut } from 'firebase/auth';
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const Header = () => {
     const [user] = useAuthState(auth);
+    const [dropdown, setDropdown] = useState(false);
 
     const handleSignOut = () => {
         const confirm = window.confirm('Proceed to sign out?');
@@ -55,10 +56,20 @@ const Header = () => {
             <div className="navbar lg:justify-between lg:px-16 bg-transparent absolute top-0 w-full z-50">
                 <div className="navbar-start flex justify-between items-center md:w-max">
                     <div className="dropdown">
-                        <label tabIndex="0" className="btn btn-ghost lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                        <label tabIndex="0" className="lg:hidden mr-auto">
+                            <label className="btn btn-circle btn-ghost swap swap-rotate">
+
+                                {/* <!-- this hidden checkbox controls the state --> */}
+                                <input onChange={() => setDropdown(!dropdown)} id='check' type="checkbox" />
+
+                                {/* <!-- hamburger icon --> */}
+                                <svg className="swap-off fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" /></svg>
+
+                                {/* <!-- close icon --> */}
+                                <svg className="swap-on fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" /></svg>
+                            </label>
                         </label>
-                        <ul tabIndex="0" className="dropdown-content mt-3 p-2 bg-base-200 rounded-lg custom-menu px-6 mx-auto">
+                        <ul tabIndex="0" className={`menu menu-compact lg:hidden ${dropdown ? '' : 'hidden'} mt-3 p-2 shadow bg-base-100 rounded-box absolute items-center text-center`}>
                             {headerItems}
                         </ul>
                     </div>

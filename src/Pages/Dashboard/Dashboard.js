@@ -3,12 +3,14 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, Outlet } from 'react-router-dom';
 import auth from '../../firebase.init';
 import useAdmin from '../../hooks/useAdmin';
+import useToken from '../../hooks/useToken';
 import Footer from '../Shared/Footer';
 import Loading from '../Shared/Loading';
 
 const Dashboard = () => {
     const [user, loading] = useAuthState(auth);
     const [admin, adminLoading] = useAdmin(user);
+    const [token] = useToken({ user })
 
     if (loading || adminLoading) {
         return <Loading></Loading>

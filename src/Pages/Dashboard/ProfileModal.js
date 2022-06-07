@@ -1,3 +1,4 @@
+import { async } from '@firebase/util';
 import axios from 'axios';
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
@@ -5,9 +6,9 @@ import { useUpdateEmail, useUpdatePassword, useUpdateProfile } from 'react-fireb
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
-import useToken from '../../hooks/useToken';
+import Loading from '../Shared/Loading';
 
-const ProfileModal = ({ setRefetch, refetch, user }) => {
+const ProfileModal = ({ setRefetch, refetch, userData }) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [updateEmail, emEpdating, emError] = useUpdateEmail(auth);
     const [updatePassword, updating, error] = useUpdatePassword(auth);
@@ -24,8 +25,6 @@ const ProfileModal = ({ setRefetch, refetch, user }) => {
 
     const [loading, setLoading] = useState(false);
 
-    const [token] = useToken({ user });
-
     useEffect(() => {
         if (emEpdating || updating || pUpdating) {
             setLoading(true);
@@ -38,10 +37,15 @@ const ProfileModal = ({ setRefetch, refetch, user }) => {
     let showError;
     if (error || emError || pError) {
         showError = error || emError || pError;
+        console.log(showError)
     }
 
-    const updateUserDb = (updatedData) => {
-        axios.put(`https://bikeverse-assignment-12.herokuapp.com/user/${user?.email}`, updatedData, {
+    if (loading) {
+        return <Loading></Loading>
+    }
+
+    const updateUserDb = async (updatedData) => {
+        await axios.put(`https://bikeverse-assignment-12.herokuapp.com/user/${userData?._id}`, updatedData, {
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
@@ -88,10 +92,8 @@ const ProfileModal = ({ setRefetch, refetch, user }) => {
                 updateUserDb({ name: name })
                 break
             case "email":
-                await updateEmail(email);
-                if (!emError) {
-                    updateUserDb({ email: email });
-                }
+                updateEmail(email);
+                updateUserDb({ email: email });
                 break
             case "password":
                 await updatePassword(password)

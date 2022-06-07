@@ -9,8 +9,6 @@ import Loading from '../../Shared/Loading';
 const AddReview = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [user, loading] = useAuthState(auth);
-    const [image, setImage] = useState('')
-
     if (loading) {
         return <Loading></Loading>
     }
@@ -28,28 +26,30 @@ const AddReview = () => {
         await axios.post(`https://api.imgbb.com/1/upload?key=${imageApiKey}`, formData)
             .then(res => {
                 const { data } = res;
-                setImage(data.data.url);
+                const image = data.data.url;
+
+                const UserReview = { name, ratings, review, title, image }
+
+                axios.post(`https://bikeverse-assignment-12.herokuapp.com/reviews`, UserReview, {
+                    headers: {
+                        'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                    }
+                })
+                    .then(res => {
+                        console.log(image)
+                        if (res.status === 401 || res.status === 403) {
+                            toast.error('Failed, Try logging in again')
+                        }
+                        const { data } = res;
+                        if (data.insertedId) {
+                            toast.success("Thanks For Your Review. Keep Rocking");
+                            reset();
+                        }
+                    })
             });
 
 
-        const UserReview = { name, ratings, review, title, image }
 
-        await axios.post(`https://bikeverse-assignment-12.herokuapp.com/reviews`, UserReview, {
-            headers: {
-                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-            }
-        })
-            .then(res => {
-                console.log(image)
-                if (res.status === 401 || res.status === 403) {
-                    toast.error('Failed, Try logging in again')
-                }
-                const { data } = res;
-                if (data.insertedId) {
-                    toast.success("Thanks For Your Review. Keep Rocking");
-                    reset();
-                }
-            })
     }
 
     return (

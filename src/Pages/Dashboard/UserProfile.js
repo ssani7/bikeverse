@@ -7,13 +7,11 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 import ProfileModal from './ProfileModal';
-import useToken from '../../hooks/useToken'
 
 const UserProfile = () => {
     const [user, loading] = useAuthState(auth);
     const [userData, setUserData] = useState({})
     const [refetch, setRefetch] = useState(false);
-    const [token] = useToken({ user });
 
     useEffect(() => {
         axios.get(`https://bikeverse-assignment-12.herokuapp.com/user/${user?.email}`, {
@@ -25,10 +23,9 @@ const UserProfile = () => {
                 const { data } = res;
                 setUserData(data)
             })
-    }, [user, refetch]);
+    }, [user, loading, refetch]);
 
     const { photo, name, email, address, job, facebook, linkedIn, twitter } = userData;
-
     if (loading) {
         return <Loading></Loading>
     }
@@ -62,7 +59,7 @@ const UserProfile = () => {
             </div>
             {
                 <ProfileModal
-                    user={user}
+                    userData={userData}
                     refetch={refetch}
                     setRefetch={setRefetch}></ProfileModal>
             }
