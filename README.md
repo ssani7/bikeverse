@@ -11,4 +11,4 @@ Features of this website are
 - Admin features are available and admins can manage, add, remove product and can manage users of this site
 
 [Live site](https://assignment-12-cameraverse.web.app/) <br/>
-[Server site repository](https://assignment-12-cameraverse.web.app/)
+[Server site repository](https://github.com/ssani7/bicycleverse-server)
