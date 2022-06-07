@@ -10,5 +10,5 @@ Features of this website are
 - Users can post reviews with image and it will be shown in the review section
 - Admin features are available and admins can manage, add, remove product and can manage users of this site
 
-[Live site](https://assignment-12-cameraverse.web.app/)
+[Live site](https://assignment-12-cameraverse.web.app/).
 [Server site repository](https://assignment-12-cameraverse.web.app/)
